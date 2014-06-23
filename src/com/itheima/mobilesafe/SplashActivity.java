@@ -15,10 +15,10 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 		tv_splash_version = (TextView)findViewById(R.id.tv_splash_version);
-		tv_splash_version.setText("°æ±¾ºÅ:"+getVersion());
+		tv_splash_version.setText("ç‰ˆæœ¬å·:"+getVersion());
 	}
 	/**
-	 * »ñÈ¡app°æ±¾ºÅ
+	 * ï¿½ï¿½È¡appï¿½æ±¾ï¿½ï¿½
 	 * @return
 	 */
 	private String getVersion() {

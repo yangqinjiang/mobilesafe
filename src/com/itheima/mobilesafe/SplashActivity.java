@@ -18,7 +18,7 @@ public class SplashActivity extends Activity {
 		tv_splash_version.setText("版本号:"+getVersion());
 	}
 	/**
-	 * ��ȡapp�汾��
+	 * 获取版本号
 	 * @return
 	 */
 	private String getVersion() {

@@ -1,20 +1,28 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.itheima.mobilesafe.HomeActivity" >
 
     <TextView
+        android:id="@+id/d"
+        style="@style/text_title_style"
+        android:text="@string/heimasafe" />
+
+    <com.itheima.mobilesafe.ui.FocusedTextView
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="@string/heimasay" />
+
+    <GridView
+        android:id="@+id/gv_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:shadowColor="#ff0000"
-        android:shadowDx="3"
-        android:shadowDy="3"
-        android:shadowRadius="3"
-        android:text="HELLOWORLD"
-        android:textColor="#000"
-        android:textSize="16sp" />
+        android:numColumns="3"
+        android:verticalSpacing="10dip" />
 
-
-</RelativeLayout>
+</LinearLayout>

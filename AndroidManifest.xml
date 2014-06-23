@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.itheima.mobilesafe.HomeActivity"></activity>
+        <activity android:name="com.itheima.mobilesafe.SettingCenterActivity"></activity>
     </application>
 
 </manifest>

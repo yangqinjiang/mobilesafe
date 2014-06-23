@@ -7,5 +7,8 @@
     <string name="heimasafe">黑马卫士</string>
     <string name="heimasay">我是你的黑马小卫士,我可以时刻保护你的安全,不拉不拉,呵呵呵呵</string>
     <string name="fangdao">手机防盗</string>
-
+    <string name="setting_center">设置中心</string>
+    <string name="auto_update_setting">自动更新设置</string>
+    <string name="enable_auto_update">自动更新已经开启</string>
+	<string name="auto_update_close">自动更新已经关闭</string>
 </resources>

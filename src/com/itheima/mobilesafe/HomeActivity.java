@@ -1,11 +1,14 @@
 package com.itheima.mobilesafe;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -28,6 +31,20 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.activity_home);
 		gv_home = (GridView) findViewById(R.id.gv_home);
 		gv_home.setAdapter(new HomeAdapter());
+		gv_home.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				Intent intent ; 
+				 switch(position){
+				 case 8://设置中心Activity
+					 intent = new Intent(HomeActivity.this,SettingCenterActivity.class);
+					 startActivity(intent);
+					 break;
+				 }
+			}
+		});
 	}
 
 	//

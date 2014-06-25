@@ -64,6 +64,9 @@ public class SettingView extends RelativeLayout {
 //		});
 		
 	}
+	public boolean isChecked(){
+		return cb_status.isChecked();
+	}
 	public void setTitle(String text){
 		tv_title.setText(text);
 	}

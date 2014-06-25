@@ -13,8 +13,22 @@
         android:id="@+id/sv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        itheima:desc_off="关闭了"
-        itheima:desc_on="打开了"
-        itheima:title_show="我是标题" />
+        itheima:desc_off="关闭了1"
+        itheima:desc_on="打开了1"
+        itheima:title_show="我是标题1" />
+    <com.itheima.mobilesafe.ui.SettingView
+        android:id="@+id/sv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        itheima:desc_off="关闭了2"
+        itheima:desc_on="打开了2"
+        itheima:title_show="我是标题2" />
+    <com.itheima.mobilesafe.ui.SettingView
+        android:id="@+id/sv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        itheima:desc_off="关闭了3"
+        itheima:desc_on="打开了3"
+        itheima:title_show="我是标题3" />
 
 </LinearLayout>

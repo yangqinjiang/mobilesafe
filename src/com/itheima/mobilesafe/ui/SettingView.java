@@ -3,6 +3,7 @@ package com.itheima.mobilesafe.ui;
 import com.itheima.mobilesafe.R;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
@@ -67,12 +68,19 @@ public class SettingView extends RelativeLayout {
 	public boolean isChecked(){
 		return cb_status.isChecked();
 	}
+	public void setChecked(boolean checked){
+		System.out.println("setChecked:"+checked);
+		cb_status.setChecked(checked);
+		tv_desc.setTextColor(checked ? 0x80000000 : Color.RED);
+		setDesc(checked ? desc_on : desc_off);
+	}
 	public void setTitle(String text){
 		tv_title.setText(text);
 	}
 	public void setDesc(String text){
 		tv_desc.setText(text);
 	}
+	
 //	public void enableUpdateStatus(View v){
 //		
 //	}

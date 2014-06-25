@@ -1078,9 +1078,9 @@ containing a value of this type.
         public static final int showTitle=0x7f050006;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
-        public static final int sv1=0x7f05003e;
         public static final int sv2=0x7f05003f;
         public static final int sv3=0x7f050040;
+        public static final int sv_autoupdate=0x7f05003e;
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;

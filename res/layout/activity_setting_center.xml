@@ -10,7 +10,7 @@
         android:text="@string/setting_center" />
 
     <com.itheima.mobilesafe.ui.SettingView
-        android:id="@+id/sv1"
+        android:id="@+id/sv_autoupdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         itheima:desc_off="关闭了1"

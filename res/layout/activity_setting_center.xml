@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:itheima="http://schemas.android.com/apk/res/com.itheima.mobilesafe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -8,42 +9,12 @@
         style="@style/text_title_style"
         android:text="@string/setting_center" />
 
-    <RelativeLayout
-        android:id="@+id/rl_setting_update"
+    <com.itheima.mobilesafe.ui.SettingView
+        android:id="@+id/sv1"
         android:layout_width="match_parent"
-        android:layout_height="55dip"
-        android:onClick="enableUpdateStatus"
-         >
-
-        <TextView
-            android:id="@+id/tv_setting_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_marginTop="5dip"
-            android:text="@string/auto_update_setting"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/tv_setting_update_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_setting_update"
-            android:layout_marginLeft="5dip"
-            android:layout_marginTop="3dip"
-            android:text="@string/enable_auto_update"
-            android:textColor="#80000000"
-            android:textSize="14sp" />
-
-        <CheckBox
-            android:focusable="false"
-            android:clickable="false"
-            android:id="@+id/cb_setting_update_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        itheima:desc_off="关闭了"
+        itheima:desc_on="打开了"
+        itheima:title_show="我是标题" />
 
 </LinearLayout>

@@ -240,6 +240,22 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int customNavigationLayout=0x7f01002e;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int desc_off=0x7f01006c;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int desc_on=0x7f01006b;
         /**  Whether this spinner should mark child views as enabled/disabled when
              the spinner itself is enabled/disabled. 
          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
@@ -749,6 +765,14 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int titleTextStyle=0x7f010026;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int title_show=0x7f01006a;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -1005,11 +1029,11 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050046;
+        public static final int action_settings=0x7f050047;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int cb_setting_update_status=0x7f050041;
+        public static final int cb_status=0x7f050046;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int d=0x7f05003c;
@@ -1036,8 +1060,8 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
-        public static final int rl_setting_update=0x7f05003e;
-        public static final int rl_splash_root=0x7f050042;
+        public static final int rl_setting_update=0x7f050043;
+        public static final int rl_splash_root=0x7f05003f;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
         public static final int search_button=0x7f050033;
@@ -1054,14 +1078,15 @@ containing a value of this type.
         public static final int showTitle=0x7f050006;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
+        public static final int sv1=0x7f05003e;
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
-        public static final int tv_home_name=0x7f050045;
-        public static final int tv_setting_update=0x7f05003f;
-        public static final int tv_setting_update_status=0x7f050040;
-        public static final int tv_splash_progress=0x7f050044;
-        public static final int tv_splash_version=0x7f050043;
+        public static final int tv_desc=0x7f050045;
+        public static final int tv_home_name=0x7f050042;
+        public static final int tv_splash_progress=0x7f050041;
+        public static final int tv_splash_version=0x7f050040;
+        public static final int tv_title=0x7f050044;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1121,6 +1146,7 @@ containing a value of this type.
         public static final int fragment_splash=0x7f03001a;
         public static final int list_home_item=0x7f03001b;
         public static final int support_simple_spinner_dropdown_item=0x7f03001c;
+        public static final int ui_setting_view=0x7f03001d;
     }
     public static final class menu {
         public static final int splash=0x7f0c0000;
@@ -2592,6 +2618,65 @@ containing a value of this type.
           @attr name com.itheima.mobilesafe:queryHint
         */
         public static final int SearchView_queryHint = 4;
+        /**  SettingView attr 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SettingView_desc_off com.itheima.mobilesafe:desc_off}</code></td><td></td></tr>
+           <tr><td><code>{@link #SettingView_desc_on com.itheima.mobilesafe:desc_on}</code></td><td></td></tr>
+           <tr><td><code>{@link #SettingView_title_show com.itheima.mobilesafe:title_show}</code></td><td></td></tr>
+           </table>
+           @see #SettingView_desc_off
+           @see #SettingView_desc_on
+           @see #SettingView_title_show
+         */
+        public static final int[] SettingView = {
+            0x7f01006a, 0x7f01006b, 0x7f01006c
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.itheima.mobilesafe.R.attr#desc_off}
+          attribute's value can be found in the {@link #SettingView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.itheima.mobilesafe:desc_off
+        */
+        public static final int SettingView_desc_off = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.itheima.mobilesafe.R.attr#desc_on}
+          attribute's value can be found in the {@link #SettingView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.itheima.mobilesafe:desc_on
+        */
+        public static final int SettingView_desc_on = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.itheima.mobilesafe.R.attr#title_show}
+          attribute's value can be found in the {@link #SettingView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.itheima.mobilesafe:title_show
+        */
+        public static final int SettingView_title_show = 0;
         /** Attributes that can be used with a Spinner.
            <p>Includes the following attributes:</p>
            <table>

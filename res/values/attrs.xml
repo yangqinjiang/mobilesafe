@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SettingView attr -->
+    <declare-styleable name="SettingView">
+        <attr name="title_show" format="string" />
+        <attr name="desc_on" format="string" />
+        <attr name="desc_off" format="string" />
+    </declare-styleable>
+
+</resources>

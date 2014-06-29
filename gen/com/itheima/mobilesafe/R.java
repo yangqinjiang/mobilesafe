@@ -1007,15 +1007,21 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int app=0x7f020057;
         public static final int atools=0x7f020058;
-        public static final int callmsgsafe=0x7f020059;
-        public static final int ic_launcher=0x7f02005a;
-        public static final int luncher_bg=0x7f02005b;
-        public static final int netmanager=0x7f02005c;
-        public static final int safe=0x7f02005d;
-        public static final int settings=0x7f02005e;
-        public static final int sysoptimize=0x7f02005f;
-        public static final int taskmanager=0x7f020060;
-        public static final int trojan=0x7f020061;
+        public static final int btn_green_normal=0x7f020059;
+        public static final int btn_green_pressed=0x7f02005a;
+        public static final int btn_selector=0x7f02005b;
+        public static final int callmsgsafe=0x7f02005c;
+        public static final int ic_launcher=0x7f02005d;
+        public static final int luncher_bg=0x7f02005e;
+        public static final int netmanager=0x7f02005f;
+        public static final int next=0x7f020060;
+        public static final int previous=0x7f020061;
+        public static final int safe=0x7f020062;
+        public static final int settings=0x7f020063;
+        public static final int setup1=0x7f020064;
+        public static final int sysoptimize=0x7f020065;
+        public static final int taskmanager=0x7f020066;
+        public static final int trojan=0x7f020067;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1029,11 +1035,13 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050049;
+        public static final int action_settings=0x7f05004d;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int cb_status=0x7f050048;
+        public static final int bt_cancle=0x7f050046;
+        public static final int bt_ok=0x7f050045;
+        public static final int cb_status=0x7f05004c;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int d=0x7f05003c;
@@ -1043,6 +1051,8 @@ containing a value of this type.
         public static final int dropdown=0x7f05000f;
         public static final int edit_query=0x7f050030;
         public static final int end=0x7f050013;
+        public static final int et_pwd=0x7f050044;
+        public static final int et_pwd_confirm=0x7f050047;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
         public static final int gv_home=0x7f05003d;
@@ -1060,7 +1070,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
-        public static final int rl_setting_update=0x7f050045;
+        public static final int rl_setting_update=0x7f050049;
         public static final int rl_splash_root=0x7f050041;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
@@ -1084,11 +1094,11 @@ containing a value of this type.
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
-        public static final int tv_desc=0x7f050047;
-        public static final int tv_home_name=0x7f050044;
+        public static final int tv_desc=0x7f05004b;
+        public static final int tv_home_name=0x7f050048;
         public static final int tv_splash_progress=0x7f050043;
         public static final int tv_splash_version=0x7f050042;
-        public static final int tv_title=0x7f050046;
+        public static final int tv_title=0x7f05004a;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1144,11 +1154,14 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int activity_home=0x7f030017;
         public static final int activity_setting_center=0x7f030018;
-        public static final int activity_splash=0x7f030019;
-        public static final int fragment_splash=0x7f03001a;
-        public static final int list_home_item=0x7f03001b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
-        public static final int ui_setting_view=0x7f03001d;
+        public static final int activity_setup=0x7f030019;
+        public static final int activity_splash=0x7f03001a;
+        public static final int dialog_enter_pwd=0x7f03001b;
+        public static final int dialog_setup_pwd=0x7f03001c;
+        public static final int fragment_splash=0x7f03001d;
+        public static final int list_home_item=0x7f03001e;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int ui_setting_view=0x7f030020;
     }
     public static final class menu {
         public static final int splash=0x7f0c0000;
@@ -1421,6 +1434,7 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar=0x7f0b000a;
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0b0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0b0022;
+        public static final int text_content_style=0x7f0b0086;
         public static final int text_title_style=0x7f0b0085;
     }
     public static final class styleable {

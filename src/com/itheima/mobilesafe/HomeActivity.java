@@ -1,5 +1,7 @@
 package com.itheima.mobilesafe;
 
+import com.itheima.mobilesafe.utils.Md5Utils;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -101,7 +103,7 @@ public class HomeActivity extends Activity {
 				if(pwd.equals(pwd_confirm)){//密码一致
 					
 					Editor edit = sp.edit();
-					edit.putString("password",pwd);
+					edit.putString("password",Md5Utils.encode(pwd));
 					edit.commit();
 					dialog.dismiss();
 					showEnterPWdDialog();
@@ -151,7 +153,7 @@ public class HomeActivity extends Activity {
 				//获取用户原来存储的密码
 				String saved_pwd = sp.getString("password", "");
 				//比较密码是否一致
-				if(saved_pwd.equals(pwd)){//密码一致
+				if(saved_pwd.equals(Md5Utils.encode(pwd))){//密码一致
 					Log.i(TAG,"密码输入正确,进入手机防盗主界面");
 					dialog.dismiss();
 					Intent intent = new Intent(HomeActivity.this,LostFindActivity.class);

@@ -10,6 +10,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -38,6 +40,8 @@
         <activity android:name="com.itheima.mobilesafe.Setup3Activity" >
         </activity>
         <activity android:name="com.itheima.mobilesafe.Setup4Activity" >
+        </activity>
+        <activity android:name="com.itheima.mobilesafe.SelectContactActivity" >
         </activity>
     </application>
 

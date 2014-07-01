@@ -2,6 +2,7 @@ package com.itheima.mobilesafe;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.view.Window;
 /**
  * 设置向导的父类Activity
@@ -20,5 +21,8 @@ public abstract class SetupBaseActivity extends Activity {
 	 * 初始化当前activity显示的内容
 	 */
 	public abstract void initView();
+	
+	public abstract void next(View view);
+	public abstract void pre(View view);
 	
 }

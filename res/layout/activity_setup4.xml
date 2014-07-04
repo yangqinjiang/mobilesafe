@@ -18,6 +18,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="防盗保护没有开启" />
+    <CheckBox
+        android:id="@+id/cb_setup4_admin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="开启设备超级管理员(开启后可以远程锁屏,清除数据)" />
 
     <LinearLayout
         android:layout_width="fill_parent"

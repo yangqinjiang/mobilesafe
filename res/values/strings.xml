@@ -10,5 +10,8 @@
     <string name="setting_center">设置中心</string>
     <string name="auto_update_setting">自动更新设置</string>
     <string name="enable_auto_update">自动更新已经开启</string>
-	<string name="auto_update_close">自动更新已经关闭</string>
+    <string name="auto_update_close">自动更新已经关闭</string>
+    <string name="sample_device_admin_description">description</string>
+    <string name="sample_device_admin">一键锁屏管理器</string>
+
 </resources>

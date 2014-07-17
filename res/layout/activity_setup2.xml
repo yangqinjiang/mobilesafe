@@ -7,7 +7,7 @@
 
     <TextView
         style="@style/text_title_style"
-        android:text="1,手机卡的绑定" />
+        android:text="2,手机卡的绑定" />
 
     <TextView
         style="@style/text_content_style"

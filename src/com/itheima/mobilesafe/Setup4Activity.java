@@ -80,13 +80,18 @@ public class Setup4Activity extends SetupBaseActivity {
 		Editor editor = sp.edit();
 		editor.putBoolean("setup", true);
 		editor.commit();
+		//先调用overridePendingTransition
+		overridePendingTransition(R.anim.tran_next_in, R.anim.tran_next_out);
+		//后调用startActivityAndFinish
 		ActivityUtils.startActivityAndFinish(this, LostFindActivity.class);
 	}
 
 	@Override
 	public void pre(View view) {
+		//先调用startActivityAndFinish
 		ActivityUtils.startActivityAndFinish(this, Setup3Activity.class);
-
+		//后调用overridePendingTransition
+		overridePendingTransition(R.anim.tran_pre_in, R.anim.tran_pre_out);
 	}
 
 }

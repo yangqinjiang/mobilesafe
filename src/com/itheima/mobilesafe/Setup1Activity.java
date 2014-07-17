@@ -14,6 +14,7 @@ public class Setup1Activity extends SetupBaseActivity {
 
 	@Override
 	public void next(View view) {
+		overridePendingTransition(R.anim.tran_next_in, R.anim.tran_next_out);
 		ActivityUtils.startActivityAndFinish(this, Setup2Activity.class);
 	}
 

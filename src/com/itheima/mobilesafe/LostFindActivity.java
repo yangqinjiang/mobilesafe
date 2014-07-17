@@ -3,11 +3,20 @@ package com.itheima.mobilesafe;
 import com.itheima.mobilesafe.utils.ActivityUtils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,4 +66,37 @@ public class LostFindActivity extends Activity {
 	public void reEntrySetup(View view) {
 		ActivityUtils.startActivityAndFinish(this, Setup1Activity.class);
 	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// 
+		MenuInflater inflater = new MenuInflater(this);
+		inflater.inflate(R.menu.lost_find_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId() == R.id.item_change_name){//更改手机防盗的名称
+			AlertDialog.Builder builder = new Builder(this);
+			builder.setTitle("更改手机防盗标题");
+			final EditText et = new EditText(this);
+			et.setHint("请输入新的标题");
+			et.setText(sp.getString("newTitle", ""));//回显
+			builder.setView(et);
+			builder.setPositiveButton("确定",new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					String newTitle  = et.getText().toString().trim();
+					Editor editor = sp.edit();
+					editor.putString("newTitle",newTitle);
+					editor.commit();
+				}
+			});
+			builder.setNegativeButton("取消", null);
+			builder.show();
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
 }

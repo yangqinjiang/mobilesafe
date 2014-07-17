@@ -231,6 +231,12 @@ public class HomeActivity extends Activity {
 			TextView tv_name = (TextView) view.findViewById(R.id.tv_home_name);
 			tv_name.setText(names[position]);
 			Drawable img = getResources().getDrawable(icons[position]);
+			if(position == 0){
+				String newTitle = sp.getString("newTitle", "");
+				if(!TextUtils.isEmpty(newTitle)){
+					tv_name.setText(newTitle);
+				}
+			}
 			img.setBounds(0, 0, img.getIntrinsicHeight() - 5,
 					img.getIntrinsicWidth());
 			tv_name.setCompoundDrawables(null, img, null, null);

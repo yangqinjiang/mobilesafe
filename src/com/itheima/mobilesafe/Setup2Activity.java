@@ -56,13 +56,15 @@ public class Setup2Activity extends SetupBaseActivity {
 			Toast.makeText(getApplicationContext(), "必须绑定sim卡", 0).show();
 			return;
 		}
+		overridePendingTransition(R.anim.tran_next_in, R.anim.tran_next_out);
 		ActivityUtils.startActivityAndFinish(this, Setup3Activity.class);
 	}
 
 	@Override
 	public void pre(View view) {
+		//
 		ActivityUtils.startActivityAndFinish(this, Setup1Activity.class);
-		
+		overridePendingTransition(R.anim.tran_pre_in, R.anim.tran_pre_out);
 	}
 
 }

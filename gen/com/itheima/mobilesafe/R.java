@@ -15,6 +15,10 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
+        public static final int tran_next_in=0x7f040006;
+        public static final int tran_next_out=0x7f040007;
+        public static final int tran_pre_in=0x7f040008;
+        public static final int tran_pre_out=0x7f040009;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1040,7 +1044,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f070016;
         public static final int action_menu_presenter=0x7f070017;
         public static final int action_mode_close_button=0x7f070024;
-        public static final int action_settings=0x7f070057;
+        public static final int action_settings=0x7f070058;
         public static final int activity_chooser_view_content=0x7f070025;
         public static final int always=0x7f07000b;
         public static final int beginning=0x7f070011;
@@ -1069,6 +1073,7 @@ containing a value of this type.
         public static final int icon=0x7f07002a;
         public static final int ifRoom=0x7f07000a;
         public static final int image=0x7f070027;
+        public static final int item_change_name=0x7f070057;
         public static final int iv_lostfind_status=0x7f070040;
         public static final int iv_setup2_status=0x7f070045;
         public static final int listMode=0x7f070001;
@@ -1185,7 +1190,8 @@ containing a value of this type.
         public static final int ui_setting_view=0x7f030026;
     }
     public static final class menu {
-        public static final int splash=0x7f0e0000;
+        public static final int lost_find_menu=0x7f0e0000;
+        public static final int splash=0x7f0e0001;
     }
     public static final class raw {
         public static final int ylzs=0x7f060000;

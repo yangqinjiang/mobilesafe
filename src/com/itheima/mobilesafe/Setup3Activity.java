@@ -52,13 +52,14 @@ public class Setup3Activity extends SetupBaseActivity {
 			editor.putString("safenumber", phone);
 			editor.commit();
 		}
+		overridePendingTransition(R.anim.tran_next_in, R.anim.tran_next_out);
 		ActivityUtils.startActivityAndFinish(this, Setup4Activity.class);
 	}
 
 	@Override
 	public void pre(View view) {
 		ActivityUtils.startActivityAndFinish(this, Setup2Activity.class);
-		
+		overridePendingTransition(R.anim.tran_pre_in, R.anim.tran_pre_out);
 	}
 
 }

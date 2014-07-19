@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.itheima.mobilesafe.HomeActivity" >
+
+    <TextView
+        style="@style/text_title_style"
+        android:text="@string/atools" />
+        <Button
+            android:drawableLeft="@android:drawable/btn_star_big_on"
+            style="@style/text_content_style"
+            android:paddingTop="5dip"
+            android:onClick="numberAddressQuery"
+            android:text="号码归属地查询" />
+</LinearLayout>

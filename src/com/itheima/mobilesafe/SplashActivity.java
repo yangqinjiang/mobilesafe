@@ -1,6 +1,8 @@
 package com.itheima.mobilesafe;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -191,6 +193,8 @@ public class SplashActivity extends Activity {
 		findViewById(R.id.rl_splash_root).startAnimation(aa);
 		tv_splash_progress = (TextView) findViewById(R.id.tv_splash_progress);
 
+			//copy外部数据库文件
+		copyAssetDBFile("address.db");
 	}
 
 	private UpdateInfo updateInfo;
@@ -295,6 +299,47 @@ public class SplashActivity extends Activity {
 		if (REQUEST_CODE == requestCode) {
 			loadMainUI();
 		}
+	}
+	/**
+	 * copy数据库文件到系统的目录
+	 *	/data/data/com/itheima.mobilesafe/files/address.db
+	 * @param db
+	 * @throws IOException 
+	 */
+	public void copyAssetDBFile(final String db){
+		System.out.println("copyAssetDBFile");
+		File file = new File(getFilesDir(),db);
+		if(file.exists() && file.length() > 0){
+			Log.i(TAG, "数据库已经copy过了,无需再次copy");
+			return;
+		}
+		new Thread(){
+			@Override
+			public void run() {
+				try {
+					//获取assert管理员,打开db文件
+					InputStream is = getAssets().open(db);
+					Log.i(TAG, "File Dir -:"+getFilesDir());
+					File file = new File(getFilesDir(),db);
+					FileOutputStream fos = new FileOutputStream(file);
+					int len= 0;
+					byte[] buffer = new byte[1024];
+					while((len = is.read(buffer))!=-1){
+						fos.write(buffer,0,len);
+					}
+					fos.close();
+					is.close();
+					Log.i(TAG, "copy数据库成功");
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+					Log.i(TAG, "copy数据库失败");
+				} catch (IOException e) {
+					e.printStackTrace();
+					Log.i(TAG, "copy数据库失败");
+				}
+			}
+		}.start();
+		
 	}
 
 }

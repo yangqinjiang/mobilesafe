@@ -62,6 +62,11 @@ public class HomeActivity extends Activity {
 					}
 					Log.i(TAG, "手机防盗");
 					break;
+				case 7://高级工具
+					intent = new Intent(HomeActivity.this,
+							AtoolsActivity.class);
+					startActivity(intent);
+					break;
 				case 8:// 设置中心Activity
 					intent = new Intent(HomeActivity.this,
 							SettingCenterActivity.class);

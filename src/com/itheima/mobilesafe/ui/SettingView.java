@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 /**
  * 自定义一个设置控件
  *
@@ -63,6 +64,14 @@ public class SettingView extends RelativeLayout {
 //				
 //			}
 //		});
+		this.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getContext()	, "cdddd",0).show();
+				cb_status.setChecked(!cb_status.isChecked());
+			}
+		});
 		
 	}
 	public boolean isChecked(){

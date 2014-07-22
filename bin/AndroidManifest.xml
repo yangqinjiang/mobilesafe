@@ -85,6 +85,8 @@
             </intent-filter>
         </receiver>
         <service android:name="com.itheima.mobilesafe.service.GPSService"></service>
+        <service android:name="com.itheima.mobilesafe.service.AddressService"></service>
+        
     </application>
 
 </manifest>

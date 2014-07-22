@@ -4,10 +4,12 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
-int anim tran_next_in 0x7f040006
-int anim tran_next_out 0x7f040007
-int anim tran_pre_in 0x7f040008
-int anim tran_pre_out 0x7f040009
+int anim cycle_7 0x7f040006
+int anim shake 0x7f040007
+int anim tran_next_in 0x7f040008
+int anim tran_next_out 0x7f040009
+int anim tran_pre_in 0x7f04000a
+int anim tran_pre_out 0x7f04000b
 int attr actionBarDivider 0x7f01000b
 int attr actionBarItemBackground 0x7f01000c
 int attr actionBarSize 0x7f01000a

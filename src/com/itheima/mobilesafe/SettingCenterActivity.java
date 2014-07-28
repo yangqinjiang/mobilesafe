@@ -46,10 +46,7 @@ public class SettingCenterActivity extends Activity {
 		// 归属地显示设置
 		sv_show_address = (SettingView) findViewById(R.id.sv_show_address);
 		addressServiceIntent = new Intent(this, AddressService.class);
-		boolean serviceRunning = ServiceUtils.isServiceRunning(this,
-				"com.itheima.mobilesafe.service.AddressService");
-
-		sv_show_address.setChecked(serviceRunning);
+		checkService();
 
 		//sv_show_address.setChecked(sp.getBoolean("show_address", true));
 		sv_show_address.setOnClickListener(new OnClickListener() {
@@ -72,6 +69,19 @@ public class SettingCenterActivity extends Activity {
 				//editor.commit();
 			}
 		});
+	}
+
+	private void checkService() {
+		boolean serviceRunning = ServiceUtils.isServiceRunning(this,
+				"com.itheima.mobilesafe.service.AddressService");
+
+		sv_show_address.setChecked(serviceRunning);
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		checkService();//解决service被kill掉后,activity未被更新ui
 	}
 
 	private Intent addressServiceIntent;

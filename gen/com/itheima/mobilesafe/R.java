@@ -1017,22 +1017,26 @@ containing a value of this type.
         public static final int btn_green_normal=0x7f02005a;
         public static final int btn_green_pressed=0x7f02005b;
         public static final int btn_selector=0x7f02005c;
-        public static final int callmsgsafe=0x7f02005d;
-        public static final int ic_launcher=0x7f02005e;
-        public static final int list_devider=0x7f02005f;
-        public static final int lock=0x7f020060;
-        public static final int luncher_bg=0x7f020061;
-        public static final int netmanager=0x7f020062;
-        public static final int next=0x7f020063;
-        public static final int phone=0x7f020064;
-        public static final int previous=0x7f020065;
-        public static final int safe=0x7f020066;
-        public static final int settings=0x7f020067;
-        public static final int setup1=0x7f020068;
-        public static final int sysoptimize=0x7f020069;
-        public static final int taskmanager=0x7f02006a;
-        public static final int trojan=0x7f02006b;
-        public static final int unlock=0x7f02006c;
+        public static final int call_locate_gray=0x7f02005d;
+        public static final int call_locate_green=0x7f02005e;
+        public static final int call_locate_orange=0x7f02005f;
+        public static final int call_locate_white=0x7f020060;
+        public static final int callmsgsafe=0x7f020061;
+        public static final int ic_launcher=0x7f020062;
+        public static final int list_devider=0x7f020063;
+        public static final int lock=0x7f020064;
+        public static final int luncher_bg=0x7f020065;
+        public static final int netmanager=0x7f020066;
+        public static final int next=0x7f020067;
+        public static final int phone=0x7f020068;
+        public static final int previous=0x7f020069;
+        public static final int safe=0x7f02006a;
+        public static final int settings=0x7f02006b;
+        public static final int setup1=0x7f02006c;
+        public static final int sysoptimize=0x7f02006d;
+        public static final int taskmanager=0x7f02006e;
+        public static final int trojan=0x7f02006f;
+        public static final int unlock=0x7f020070;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;
@@ -1193,7 +1197,8 @@ containing a value of this type.
         public static final int list_contact_item=0x7f030025;
         public static final int list_home_item=0x7f030026;
         public static final int support_simple_spinner_dropdown_item=0x7f030027;
-        public static final int ui_setting_view=0x7f030028;
+        public static final int toast_address=0x7f030028;
+        public static final int ui_setting_view=0x7f030029;
     }
     public static final class menu {
         public static final int lost_find_menu=0x7f0e0000;

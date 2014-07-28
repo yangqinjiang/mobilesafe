@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/call_locate_gray"
+    android:orientation="horizontal" >
+
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="归属地"
+        android:id="@+id/tv_address"
+        android:textSize="40sp"
+        android:textColor="#ff55ff"
+        android:drawableLeft="@drawable/ic_launcher"
+        />
+</LinearLayout>

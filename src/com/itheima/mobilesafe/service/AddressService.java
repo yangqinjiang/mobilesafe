@@ -8,11 +8,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.view.Gravity;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -63,9 +65,16 @@ public class AddressService extends Service {
 			params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE |//不可点击
 					WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |//不获取焦点
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;//点亮屏幕
+			
 			params.format = PixelFormat.TRANSLUCENT;//半透明
 			params.windowAnimations =android.R.style.Animation_Toast;//动画效果
 			params.type = WindowManager.LayoutParams.TYPE_TOAST;
+			
+			params.gravity =Gravity.LEFT + Gravity.TOP;//左上对齐
+			SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
+			//sp
+			params.x =sp.getInt("lastx",0);
+			params.y =sp.getInt("lasty",0);
 		//}
 		wm.addView(view, params);
 	}

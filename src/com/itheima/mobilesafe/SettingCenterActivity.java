@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.itheima.mobilesafe.service.AddressService;
+import com.itheima.mobilesafe.ui.SettingClickView;
 import com.itheima.mobilesafe.ui.SettingView;
 import com.itheima.mobilesafe.utils.ServiceUtils;
 
@@ -69,6 +70,15 @@ public class SettingCenterActivity extends Activity {
 				//editor.commit();
 			}
 		});
+		//更改归属地显示位置
+		scv_change_location = (SettingClickView)findViewById(R.id.scv_change_location);
+		scv_change_location.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(SettingCenterActivity.this, DragViewActivity.class));
+			}
+		});
 	}
 
 	private void checkService() {
@@ -85,4 +95,6 @@ public class SettingCenterActivity extends Activity {
 	}
 
 	private Intent addressServiceIntent;
+	
+	private SettingClickView scv_change_location;
 }

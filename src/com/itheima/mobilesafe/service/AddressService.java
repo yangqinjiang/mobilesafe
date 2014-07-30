@@ -9,14 +9,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -52,26 +55,73 @@ public class AddressService extends Service {
 	}
 	private WindowManager wm;
 	private View view;
+	WindowManager.LayoutParams params;
 	private void showAddressInWindow(String address) {
-		WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+		params = new WindowManager.LayoutParams();
 		//if(view == null){
 			view = View.inflate(getApplicationContext(), R.layout.toast_address,null);
+			view.setOnTouchListener(new OnTouchListener() {
+				int startX;
+				int startY;
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					switch(event.getAction()){
+					case MotionEvent.ACTION_DOWN:
+						startX = (int)event.getRawX();
+						startY=(int)event.getRawY();
+						break;
+					case MotionEvent.ACTION_MOVE:
+						int newX =(int)event.getRawX();
+						int newY =(int)event.getRawY();
+						int dx=newX-startX;
+						int dy=newY-startY;
+						params.x+=dx;
+						params.y+=dy;
+						//判断是否移出窗体
+						if(params.x<0){
+							params.x=0;
+						}
+						if(params.y<0){
+							params.y=0;
+						}
+						if(params.x>wm.getDefaultDisplay().getWidth()){
+							params.x=wm.getDefaultDisplay().getWidth()-50;
+						}
+						if(params.y>wm.getDefaultDisplay().getHeight()){
+							params.y=wm.getDefaultDisplay().getHeight()-80;
+						}
+						wm.updateViewLayout(view, params);//更新位置
+						startX = (int)event.getRawX();
+						startY=(int)event.getRawY();
+						break;
+					case MotionEvent.ACTION_UP:
+						//保存位置
+						Editor edit = sp.edit();
+						edit.putInt("lastx",params.x);
+						edit.putInt("lasty",params.y);
+						edit.commit();
+						break;
+					}
+					return true;
+				}
+			});
 			TextView tv = (TextView)view.findViewById(R.id.tv_address);
 			tv.setText(address);
 			
 			
 			params.height = WindowManager.LayoutParams.WRAP_CONTENT;
 			params.width = WindowManager.LayoutParams.WRAP_CONTENT;
-			params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE |//不可点击
-					WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |//不获取焦点
+			params.flags = //WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE |//不可点击
+					//WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |//不获取焦点
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;//点亮屏幕
 			
 			params.format = PixelFormat.TRANSLUCENT;//半透明
+			
 			params.windowAnimations =android.R.style.Animation_Toast;//动画效果
-			params.type = WindowManager.LayoutParams.TYPE_TOAST;
+			params.type = WindowManager.LayoutParams.TYPE_PRIORITY_PHONE;//高级别的Ui//加入权限:android.permission.SYSTEM_ALERT_WINDOW
 			
 			params.gravity =Gravity.LEFT + Gravity.TOP;//左上对齐
-			SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
+			
 			//sp
 			params.x =sp.getInt("lastx",0);
 			params.y =sp.getInt("lasty",0);
@@ -79,7 +129,7 @@ public class AddressService extends Service {
 		wm.addView(view, params);
 	}
 	private InnerReceiver receiver;
-	
+	SharedPreferences sp;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -95,6 +145,7 @@ public class AddressService extends Service {
 		//注册监听者,监听呼叫的状态
 		listener = new MyListener();
 		tm.listen(listener, PhoneStateListener.LISTEN_CALL_STATE);
+		sp = getSharedPreferences("config",MODE_PRIVATE);
 	}
 
 	class MyListener extends PhoneStateListener{

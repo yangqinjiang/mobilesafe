@@ -5,10 +5,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DragViewActivity extends Activity {
 	private final static String  TAG = "DragViewActivity";
@@ -51,7 +54,40 @@ public class DragViewActivity extends Activity {
 		params.leftMargin = lastx;
 		params.topMargin = lasty;
 		iv_drag.setLayoutParams(params);
-		
+		//注册双击事件,模拟
+		//难点:触摸事件和点击事件同时对应
+		//触摸事件和点击事件的区别:
+		//点击事件的组合:按下--停留(时间长短)--离开
+		//事件传递过程:activity-->layout-->widget
+		iv_drag.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(firstClickedTime>0){//原来点击了
+					long sencondClickedTime = System.currentTimeMillis();
+					long dTime = sencondClickedTime -firstClickedTime;
+					if(dTime<500){
+						Log.i(TAG, "双击事件");
+						firstClickedTime =0;
+						//双击居中
+						int screenWidth =wm.getDefaultDisplay().getWidth();
+						int ivWidth = iv_drag.getWidth();
+						int l= screenWidth/2-ivWidth/2;
+						int t = iv_drag.getTop();
+						int r = screenWidth/2+ivWidth/2;
+						int b=iv_drag.getBottom();
+						iv_drag.layout(l,t,r,b);
+						//居中后,保存位置
+						Editor edit = sp.edit();//记录位置
+						edit.putInt("lastx", iv_drag.getLeft());
+						edit.putInt("lasty", iv_drag.getTop());
+						edit.commit();
+						return ;
+					}
+				}
+				firstClickedTime = System.currentTimeMillis();
+			}
+		});
 		
 		//注册Touch事件监听
 		iv_drag.setOnTouchListener(new OnTouchListener() {
@@ -121,10 +157,25 @@ public class DragViewActivity extends Activity {
 					edit.commit();
 					break;
 				}
-				return true;//返回true,表示已经处理了事件
+				//return true;//返回true,表示已经处理了事件,不会处理点击事件了
+				return false;//false,继续处理点击事件
 			}
 		});
 	}
+	long[] mHits = new long[3];
+	public void mulitClick(View view){//
+		//src 要copy的源数组
+		//srcPos 从源数组的哪个位置开始copy
+		//dst 要copy的目标数组
+		//dstPos 目标数组的哪个位置开始copy
+		//length 要copy多少个元素
+		System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
+		mHits[mHits.length-1]= SystemClock.uptimeMillis();//uptimeMillis开机时间
+		if(mHits[0]>=(SystemClock.uptimeMillis()-500)){//第一次点击的时间和最后一次点击的时间在500ms内
+			Toast.makeText(this, "三击事件", 0).show();
+		}
+	}
+	private long firstClickedTime;
 	private SharedPreferences sp;
 	private ImageView iv_drag;
 	private TextView tv_drag_top;

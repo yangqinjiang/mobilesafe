@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -42,6 +43,8 @@ public class CommonNumberQueryActivity extends Activity {
 
 	class CommonNumberAdapter extends BaseExpandableListAdapter {
 
+		private static final String TAG = "CommonNumberAdapter";
+
 		// 得到分组的数量
 		@Override
 		public int getGroupCount() {
@@ -59,7 +62,14 @@ public class CommonNumberQueryActivity extends Activity {
 		@Override
 		public View getGroupView(int groupPosition, boolean isExpanded,
 				View convertView, ViewGroup parent) {
-			TextView tv = new TextView(getApplicationContext());
+			TextView tv = null;
+			if(null!=convertView && convertView instanceof TextView){
+				tv = (TextView)convertView;
+				Log.i(TAG, "non create textview");
+			}else{
+				tv = new TextView(getApplicationContext());
+				Log.i(TAG, "create textview");
+			}
 			String name = CommonNumberDao.getGroupNameByPosition(groupPosition, db);
 			tv.setText("        "+name);
 			tv.setTextColor(Color.RED);
@@ -72,7 +82,14 @@ public class CommonNumberQueryActivity extends Activity {
 		@Override
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
-			TextView tv = new TextView(getApplicationContext());
+			TextView tv = null;
+			if(null!=convertView && convertView instanceof TextView){
+				tv = (TextView)convertView;
+				Log.i(TAG, "non create textview");
+			}else{
+				Log.i(TAG, "create textview");
+				tv = new TextView(getApplicationContext());
+			}
 			String name = CommonNumberDao.getChildNameByPosition(groupPosition, childPosition, db);
 			tv.setText("               "+name);
 			tv.setTextColor(Color.BLACK);

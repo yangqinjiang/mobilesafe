@@ -1,5 +1,7 @@
 package com.itheima.mobilesafe;
 
+import com.itheima.mobilesafe.db.dao.CommonNumberDao;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,13 +35,13 @@ public class CommonNumberQueryActivity extends Activity {
 		// 得到分组的数量
 		@Override
 		public int getGroupCount() {
-			return 5;
+			return CommonNumberDao.getGroupCount();
 		}
 
 		// 得到里面孩子的数量
 		@Override
 		public int getChildrenCount(int groupPosition) {
-			return 8;
+			return CommonNumberDao.getChildCountByPostion(groupPosition);
 		}
 		/**
 		 * 获取某个分组的view对象,获取某个分组条目显示的内容
@@ -48,7 +50,8 @@ public class CommonNumberQueryActivity extends Activity {
 		public View getGroupView(int groupPosition, boolean isExpanded,
 				View convertView, ViewGroup parent) {
 			TextView tv = new TextView(getApplicationContext());
-			tv.setText("      哈哈我是一个分组,我的id为:"+groupPosition);
+			String name = CommonNumberDao.getGroupNameByPosition(groupPosition);
+			tv.setText("        "+name);
 			tv.setTextColor(Color.RED);
 			tv.setTextSize(20);
 			return tv;
@@ -60,7 +63,8 @@ public class CommonNumberQueryActivity extends Activity {
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
 			TextView tv = new TextView(getApplicationContext());
-			tv.setText("我是第"+groupPosition+"分组,第"+childPosition+"个孩子");
+			String name = CommonNumberDao.getChildNameByPosition(groupPosition, childPosition);
+			tv.setText("               "+name);
 			tv.setTextColor(Color.BLACK);
 			tv.setTextSize(14);
 			return tv;

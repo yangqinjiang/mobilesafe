@@ -195,6 +195,7 @@ public class SplashActivity extends Activity {
 
 			//copy外部数据库文件
 		copyAssetDBFile("address.db");
+		copyAssetDBFile("commonnum.db");
 	}
 
 	private UpdateInfo updateInfo;

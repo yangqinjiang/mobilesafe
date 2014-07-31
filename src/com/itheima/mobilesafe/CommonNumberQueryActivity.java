@@ -3,6 +3,7 @@ package com.itheima.mobilesafe;
 import com.itheima.mobilesafe.db.dao.CommonNumberDao;
 
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -20,14 +21,23 @@ import android.widget.TextView;
 public class CommonNumberQueryActivity extends Activity {
 
 	private ExpandableListView elv;
-
+	private SQLiteDatabase db;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_common_number);
 		elv = (ExpandableListView) findViewById(R.id.elv);
+		db = SQLiteDatabase.openDatabase(CommonNumberDao.DB_PATH, null, SQLiteDatabase.OPEN_READONLY);
 		// adapter
 		elv.setAdapter(new CommonNumberAdapter());
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if(null!=db){
+			db.close();
+			db=null;
+		}
 	}
 
 	class CommonNumberAdapter extends BaseExpandableListAdapter {
@@ -35,13 +45,13 @@ public class CommonNumberQueryActivity extends Activity {
 		// 得到分组的数量
 		@Override
 		public int getGroupCount() {
-			return CommonNumberDao.getGroupCount();
+			return CommonNumberDao.getGroupCount(db);
 		}
 
 		// 得到里面孩子的数量
 		@Override
 		public int getChildrenCount(int groupPosition) {
-			return CommonNumberDao.getChildCountByPostion(groupPosition);
+			return CommonNumberDao.getChildCountByPostion(groupPosition, db);
 		}
 		/**
 		 * 获取某个分组的view对象,获取某个分组条目显示的内容
@@ -50,7 +60,7 @@ public class CommonNumberQueryActivity extends Activity {
 		public View getGroupView(int groupPosition, boolean isExpanded,
 				View convertView, ViewGroup parent) {
 			TextView tv = new TextView(getApplicationContext());
-			String name = CommonNumberDao.getGroupNameByPosition(groupPosition);
+			String name = CommonNumberDao.getGroupNameByPosition(groupPosition, db);
 			tv.setText("        "+name);
 			tv.setTextColor(Color.RED);
 			tv.setTextSize(20);
@@ -63,7 +73,7 @@ public class CommonNumberQueryActivity extends Activity {
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
 			TextView tv = new TextView(getApplicationContext());
-			String name = CommonNumberDao.getChildNameByPosition(groupPosition, childPosition);
+			String name = CommonNumberDao.getChildNameByPosition(groupPosition, childPosition, db);
 			tv.setText("               "+name);
 			tv.setTextColor(Color.BLACK);
 			tv.setTextSize(14);

@@ -20,4 +20,9 @@ public class AtoolsActivity extends Activity {
 				NumberQueryActivity.class);
 		startActivity(intent);
 	}
+	public void commonNumberAddressQuery(View view){
+		Intent intent = new Intent(this,
+				CommonNumberQueryActivity.class);
+		startActivity(intent);
+	}
 }

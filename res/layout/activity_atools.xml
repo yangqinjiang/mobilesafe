@@ -14,4 +14,10 @@
             android:paddingTop="5dip"
             android:onClick="numberAddressQuery"
             android:text="号码归属地查询" />
+        <Button
+            android:drawableLeft="@android:drawable/btn_star_big_on"
+            style="@style/text_content_style"
+            android:paddingTop="5dip"
+            android:onClick="commonNumberAddressQuery"
+            android:text="常用号码查询" />
 </LinearLayout>

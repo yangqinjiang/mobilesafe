@@ -59,6 +59,8 @@
         </activity>
         <activity android:name="com.itheima.mobilesafe.DragViewActivity" >
         </activity>
+        <activity android:name="com.itheima.mobilesafe.CommonNumberQueryActivity" >
+        </activity>
         <receiver android:name="com.itheima.mobilesafe.receiver.BootCompleteReceiver">
             <intent-filter >
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

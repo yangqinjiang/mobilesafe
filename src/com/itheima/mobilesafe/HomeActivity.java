@@ -62,6 +62,12 @@ public class HomeActivity extends Activity {
 					}
 					Log.i(TAG, "手机防盗");
 					break;
+				case 1:
+					//通讯卫士
+					intent = new Intent(HomeActivity.this,
+							CallSmsSafeActivity.class);
+					startActivity(intent);
+					break;
 				case 7://高级工具
 					intent = new Intent(HomeActivity.this,
 							AtoolsActivity.class);

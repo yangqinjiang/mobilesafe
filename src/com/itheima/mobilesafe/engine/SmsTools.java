@@ -21,6 +21,22 @@ import android.util.Xml;
  */
 public class SmsTools {
 
+	public interface SmsToolsCallBack{
+		/**
+		 * 备份短信之前调用的方法
+		 * @param max 多少条信息
+		 */
+		public void beforeSmsBackup(int max);
+		/**
+		 * 在备份过程中调用的方法
+		 * @param progress 当前备份的进度
+		 */
+		public void onSmsBackup(int progress);
+		/**
+		 * 备份结束后
+		 */
+		public void endSmsBackup();
+	}
 	/**
 	 * 备份短信,到xml文件
 	 * @param context
@@ -28,7 +44,7 @@ public class SmsTools {
 	 * @throws IllegalStateException 
 	 * @throws IllegalArgumentException 
 	 */
-	public static void backUpSms(Context context,ProgressDialog pd) throws Exception{
+	public static void backUpSms(Context context,SmsToolsCallBack callback) throws Exception{
 		XmlSerializer serializer = Xml.newSerializer();
 		File file = new File(Environment.getExternalStorageDirectory(),"backup.xml");
 		FileOutputStream os = new FileOutputStream(file);
@@ -44,7 +60,7 @@ public class SmsTools {
 										"body"};//短信内容
 		Cursor cursor = resolver.query(uri , projection , null,null,null);
 		//
-		pd.setMax(cursor.getCount());
+		callback.beforeSmsBackup(cursor.getCount());
 		int progress = 0;
 		while(cursor.moveToNext()){
 			Thread.sleep(1000);
@@ -72,12 +88,13 @@ public class SmsTools {
 			
 			serializer.endTag(null,"sms");
 			progress++;
-			pd.setProgress(progress);
+			callback.onSmsBackup(progress);
 		}
 		cursor.close();
 		serializer.endTag(null, "smss");
 		serializer.endDocument();
 		os.close();
+		callback.endSmsBackup();
 	}
 	
 }

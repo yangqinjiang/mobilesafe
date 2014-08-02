@@ -8,6 +8,7 @@
         style="@style/text_title_style"
         android:text="@string/blacknumber" />
     <ListView
+        android:fastScrollEnabled="true"
         android:id="@+id/lv_callsms_safe"
             android:layout_width="match_parent"
     android:layout_height="match_parent" 

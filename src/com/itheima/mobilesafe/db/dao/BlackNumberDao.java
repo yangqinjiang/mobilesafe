@@ -137,6 +137,39 @@ public class BlackNumberDao {
 		return infos;
 	}
 	/**
+	 * 分布查询号码
+	 * 
+	 * @param pageNumber
+	 *            页码
+	 *            页码1 0~19
+	 *            页码2 20~39
+	 *            页码n (n-1)*20 ~n*20-1
+	 * @param manNumber
+	 *            最多获取多少条数据
+	 * @return
+	 */
+	public List<BlackNumberInfo> findPartByPage(int pageNumber, int maxNumber) {
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<BlackNumberInfo> infos = new ArrayList<BlackNumberInfo>();
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(
+				"select phone,mode from blacknumber limit ? offset ?",
+				new String[] { String.valueOf(maxNumber),
+						String.valueOf((pageNumber-1)*maxNumber) });
+		while (cursor.moveToNext()) {
+			infos.add(new BlackNumberInfo(cursor.getString(0), cursor
+					.getString(1)));
+		}
+		cursor.close();
+		db.close();
+		return infos;
+	}
+	/**
 	 * 查询部分的号码,使用select phone,mode from blacknumber limit maxNumber offset startIndex
 	 * 
 	 * @param startIndex

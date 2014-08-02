@@ -7,10 +7,12 @@ import com.itheima.mobilesafe.db.domain.BlackNumberInfo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +21,13 @@ public class CallSmsSafeActivity extends Activity {
 	private ListView lv_callsms_safe;
 	private BlackNumberDao dao;
 	private List<BlackNumberInfo> blacknumberinfos;
+	private LinearLayout ll_loading;
+	private Handler handler = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			ll_loading.setVisibility(View.INVISIBLE);
+			lv_callsms_safe.setAdapter(new CallSmsSafeAdapter());
+		};
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,8 +35,15 @@ public class CallSmsSafeActivity extends Activity {
 		setContentView(R.layout.activity_callsms_safe);
 		lv_callsms_safe = (ListView)findViewById(R.id.lv_callsms_safe);
 		dao = new BlackNumberDao(this);
-		blacknumberinfos = dao.findAll();
-		lv_callsms_safe.setAdapter(new CallSmsSafeAdapter());
+		ll_loading=(LinearLayout)findViewById(R.id.ll_loading);
+		ll_loading.setVisibility(View.VISIBLE);
+		new Thread(){
+			public void run() {
+				blacknumberinfos = dao.findAll();
+				handler.sendEmptyMessage(0);//发空消息,通知setAdapter
+			};
+		}.start();
+		
 	}
 	class CallSmsSafeAdapter extends BaseAdapter{
 

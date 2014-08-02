@@ -116,6 +116,12 @@ public class BlackNumberDao {
 	 * @return
 	 */
 	public List<BlackNumberInfo> findPart(int startIndex, int maxNumber) {
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		List<BlackNumberInfo> infos = new ArrayList<BlackNumberInfo>();
 		SQLiteDatabase db = helper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(
@@ -129,5 +135,26 @@ public class BlackNumberDao {
 		cursor.close();
 		db.close();
 		return infos;
+	}
+	/**
+	 * 查询部分的号码,使用select phone,mode from blacknumber limit maxNumber offset startIndex
+	 * 
+	 * @param startIndex
+	 *            从哪个位置开始获取数据
+	 * @param manNumber
+	 *            最多获取多少条数据
+	 * @return
+	 */
+	public int getTotalCount() {
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(
+				"select count(*) from blacknumber",
+				null);
+		cursor.moveToNext();
+		int count = cursor.getInt(0);
+		
+		cursor.close();
+		db.close();
+		return count;
 	}
 }

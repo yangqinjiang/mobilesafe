@@ -86,6 +86,25 @@ public class BlackNumberDao {
 		db.close();
 		return result;
 	}
+	/**
+	 * 查询一条黑名单号码是否存在
+	 * 
+	 * @param phone
+	 *            黑名单号码
+	 * @return null 不是黑名单号码  1电话拦截,2:短信拦截,3,全部拦截
+	 */
+	public String findMode(String phone) {
+		String mode =null;
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.query("blacknumber", new String[]{"mode"}, "phone=?",
+				new String[] { phone }, null, null, null);
+		if(cursor.moveToNext()){
+			mode = cursor.getString(0);
+		}
+		cursor.close();
+		db.close();
+		return mode;
+	}
 
 	/**
 	 * 查询全部的号码,比较消耗时间

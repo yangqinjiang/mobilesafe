@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.itheima.mobilesafe.service.AddressService;
+import com.itheima.mobilesafe.service.CallSmsSafeService;
 import com.itheima.mobilesafe.ui.SettingClickView;
 import com.itheima.mobilesafe.ui.SettingView;
 import com.itheima.mobilesafe.utils.ServiceUtils;
@@ -21,6 +22,9 @@ public class SettingCenterActivity extends Activity {
 	private SettingView sv_autoupdate;
 	private SettingView sv_show_address;
 
+	//黑名单拦截设置
+	private SettingView sv_callsms_safe;
+	private Intent callSmsSafeIntent;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,7 +51,7 @@ public class SettingCenterActivity extends Activity {
 		// 归属地显示设置
 		sv_show_address = (SettingView) findViewById(R.id.sv_show_address);
 		addressServiceIntent = new Intent(this, AddressService.class);
-		checkService();
+		//checkService();
 
 		//sv_show_address.setChecked(sp.getBoolean("show_address", true));
 		sv_show_address.setOnClickListener(new OnClickListener() {
@@ -70,6 +74,7 @@ public class SettingCenterActivity extends Activity {
 				//editor.commit();
 			}
 		});
+		
 		//更改归属地显示位置
 		scv_change_location = (SettingClickView)findViewById(R.id.scv_change_location);
 		scv_change_location.setOnClickListener(new OnClickListener() {
@@ -79,6 +84,24 @@ public class SettingCenterActivity extends Activity {
 				startActivity(new Intent(SettingCenterActivity.this, DragViewActivity.class));
 			}
 		});
+		// 黑名单服务设置
+		sv_callsms_safe = (SettingView) findViewById(R.id.sv_callsms_safe);
+		callSmsSafeIntent = new Intent(this, CallSmsSafeService.class);
+		//checkService();
+		sv_callsms_safe.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (sv_callsms_safe.isChecked()) {
+					sv_callsms_safe.setChecked(false);
+					stopService(callSmsSafeIntent);
+				} else {
+					sv_callsms_safe.setChecked(true);
+					startService(callSmsSafeIntent);
+				}
+			}
+		});
+		checkService();
 	}
 
 	private void checkService() {
@@ -86,6 +109,11 @@ public class SettingCenterActivity extends Activity {
 				"com.itheima.mobilesafe.service.AddressService");
 
 		sv_show_address.setChecked(serviceRunning);
+		
+		boolean callSmsServiceRunning = ServiceUtils.isServiceRunning(this,
+				"com.itheima.mobilesafe.service.CallSmsSafeService");
+
+		sv_callsms_safe.setChecked(callSmsServiceRunning);
 	}
 	
 	@Override

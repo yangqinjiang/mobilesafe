@@ -6,6 +6,8 @@ import com.itheima.mobilesafe.db.dao.BlackNumberDao;
 import com.itheima.mobilesafe.db.domain.BlackNumberInfo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -166,4 +169,50 @@ public class CallSmsSafeActivity extends Activity {
 		TextView tv_phone;
 		ImageView iv_callsms_delete;
 	}
+	/**
+	 * 添加黑名单号码事件
+	 * @param view
+	 */
+	public void addBlackNumber(View view){
+		AlertDialog.Builder builder = new Builder(this);
+		final AlertDialog dialog = builder.create();
+		View dialogView = View.inflate(this, R.layout.dialog_add_blacknumber, null);
+		dialog.setView(dialogView);
+		dialog.show();
+		et_phone=(EditText)dialogView.findViewById(R.id.et_phone);
+		rg_mode=(RadioGroup)dialogView.findViewById(R.id.rg_mode);
+		dialogView.findViewById(R.id.bt_cancle).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		dialogView.findViewById(R.id.bt_ok).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String phone = et_phone.getText().toString().trim();
+				if(TextUtils.isEmpty(phone)){
+					Toast.makeText(getApplicationContext(), "电话号码不能为空.",0).show();
+					return;
+				}
+				int id = rg_mode.getCheckedRadioButtonId();
+				String mode = "3";//默认拦截模式
+				if(id==R.id.rb_phone){
+					mode="1";
+				}else if(id==R.id.rb_sms){
+					mode="2";
+				}
+				dao.add(phone, mode);//1.增加到数据库
+				//2.把数据更新到ui,在集合的第一位加入新数据
+				blacknumberinfos.add(0,new BlackNumberInfo(phone, mode));
+				//3.通知适配器更新
+				adapter.notifyDataSetChanged();
+				dialog.dismiss();
+			}
+		});
+	}
+	private EditText et_phone;
+	private RadioGroup rg_mode;
 }

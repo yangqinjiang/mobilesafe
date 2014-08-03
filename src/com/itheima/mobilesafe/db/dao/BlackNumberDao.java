@@ -125,7 +125,7 @@ public class BlackNumberDao {
 		List<BlackNumberInfo> infos = new ArrayList<BlackNumberInfo>();
 		SQLiteDatabase db = helper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(
-				"select phone,mode from blacknumber limit ? offset ?",
+				"select phone,mode from blacknumber order by _id desc limit ? offset ?",
 				new String[] { String.valueOf(maxNumber),
 						String.valueOf(startIndex) });
 		while (cursor.moveToNext()) {
@@ -158,7 +158,7 @@ public class BlackNumberDao {
 		List<BlackNumberInfo> infos = new ArrayList<BlackNumberInfo>();
 		SQLiteDatabase db = helper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(
-				"select phone,mode from blacknumber limit ? offset ?",
+				"select phone,mode from blacknumber order by _id desc limit ? offset ? ",
 				new String[] { String.valueOf(maxNumber),
 						String.valueOf((pageNumber-1)*maxNumber) });
 		while (cursor.moveToNext()) {

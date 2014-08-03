@@ -4,9 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        style="@style/text_title_style"
-        android:text="@string/blacknumber" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            style="@style/text_title_style"
+            android:text="@string/blacknumber" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            android:layout_alignParentRight="true"
+            android:onClick="addBlackNumber" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,10 +33,10 @@
             android:inputType="number" />
 
         <Button
-            android:onClick="jump"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_selector"
+            android:onClick="jump"
             android:text="跳转" />
     </LinearLayout>
 

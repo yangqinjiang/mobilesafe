@@ -9,11 +9,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,11 +55,12 @@ public class CallSmsSafeActivity extends Activity {
 		fillData();
 
 	}
-	private int pageNumber =1;
+
+	private int pageNumber = 1;
+
 	private void fillData() {
 		ll_loading.setVisibility(View.VISIBLE);
 		new Thread() {
-			
 
 			public void run() {
 				blacknumberinfos = dao.findPartByPage(pageNumber, maxNumber);
@@ -80,13 +84,15 @@ public class CallSmsSafeActivity extends Activity {
 
 	class CallSmsSafeAdapter extends BaseAdapter {
 
+		protected String TAG ="CallSmsSafeAdapter";
+
 		@Override
 		public int getCount() {
 			return blacknumberinfos.size();
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			View view = null;
 			ViewHolder holder;
 			// 1,复用历史缓存的view对象,减少view对象创建的次数
@@ -103,6 +109,8 @@ public class CallSmsSafeActivity extends Activity {
 						.findViewById(R.id.tv_callsms_mode);
 				holder.tv_phone = (TextView) view
 						.findViewById(R.id.tv_callsms_phone);
+				holder.iv_callsms_delete = (ImageView) view
+						.findViewById(R.id.iv_callsms_delete);
 				// 放进父view的包里
 				view.setTag(holder);
 			}
@@ -119,6 +127,21 @@ public class CallSmsSafeActivity extends Activity {
 				mode = "全部拦截";
 			}
 			holder.tv_mode.setText(mode);
+			//删除按钮事件
+			holder.iv_callsms_delete.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Log.i(TAG , position+"被点击了"+blacknumberinfos.get(position).getPhone());
+					//1.删除数据库里的黑名单号码
+					dao.delete(blacknumberinfos.get(position).getPhone());
+					//2.删除ui里的条目
+					blacknumberinfos.remove(position);
+					//3.通知ui更新内容
+					adapter.notifyDataSetChanged();
+					
+				}
+			});
 			return view;
 		}
 
@@ -141,5 +164,6 @@ public class CallSmsSafeActivity extends Activity {
 	static class ViewHolder {// 静态类,
 		TextView tv_mode;
 		TextView tv_phone;
+		ImageView iv_callsms_delete;
 	}
 }

@@ -7,9 +7,13 @@ import com.itheima.mobilesafe.db.dao.BlackNumberDao;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.SmsMessage;
@@ -82,7 +86,7 @@ private class InnerSmsReceiver extends BroadcastReceiver{
 		private static final String TAG = "MyPhoneListener";
 
 		@Override
-		public void onCallStateChanged(int state, String incomingNumber) {
+		public void onCallStateChanged(int state, final String incomingNumber) {
 			switch (state) {
 			case TelephonyManager.CALL_STATE_IDLE:
 				
@@ -93,18 +97,19 @@ private class InnerSmsReceiver extends BroadcastReceiver{
 				if("1".equals(mode)|| "3".equals(mode)){
 					Log.i(TAG, "发现黑名单电话,拦截");
 					//在这里挂断电话
-					//反射serviceManager挂断电话,使用系统隐藏的服务
-					
-					String className="android.os.ServiceManager";
-					try {
-						Class clazz = CallSmsSafeService.class.getClassLoader().loadClass(className);
-						Method method =clazz.getMethod("getService",String.class);
-						IBinder iBinder =(IBinder)method.invoke(null, TELEPHONY_SERVICE);
-						ITelephony.Stub.asInterface(iBinder).endCall();//手动挂断电话
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					
+					endCall();
+					//清除通话记录,通话记录不是立即生成的,需要一定的时间,
+					//
+					//deleteCallLog(incomingNumber);
+					//需要注册内容观察者,观察呼叫记录的变化
+					Uri uri = Uri.parse("content://call_log/calls");
+					getContentResolver().registerContentObserver(uri, true,new ContentObserver(new Handler()){
+						@Override
+						public void onChange(boolean selfChange) {
+							getContentResolver().unregisterContentObserver(this);//注册自身的观察
+							deleteCallLog(incomingNumber);
+						}
+					});
 				}
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:
@@ -113,6 +118,34 @@ private class InnerSmsReceiver extends BroadcastReceiver{
 			default:
 				break;
 			}
+		}
+
+
+	}
+	/**
+	 * 清除黑名单的中呼叫记录
+	 * @param incomingNumber
+	 */
+	private void deleteCallLog(String incomingNumber){
+		ContentResolver resolver = getContentResolver();
+		Uri uri = Uri.parse("content://call_log/calls");
+		
+		resolver.delete(uri, "number=?",new String[]{incomingNumber});
+	}
+	/**
+	 * 挂断电话
+	 */
+	private void endCall() {
+		//反射serviceManager挂断电话,使用系统隐藏的服务
+		
+		String className="android.os.ServiceManager";
+		try {
+			Class clazz = CallSmsSafeService.class.getClassLoader().loadClass(className);
+			Method method =clazz.getMethod("getService",String.class);
+			IBinder iBinder =(IBinder)method.invoke(null, TELEPHONY_SERVICE);
+			ITelephony.Stub.asInterface(iBinder).endCall();//手动挂断电话
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

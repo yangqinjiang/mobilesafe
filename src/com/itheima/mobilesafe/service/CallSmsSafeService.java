@@ -1,5 +1,8 @@
 package com.itheima.mobilesafe.service;
 
+import java.lang.reflect.Method;
+
+import com.android.internal.telephony.ITelephony;
 import com.itheima.mobilesafe.db.dao.BlackNumberDao;
 
 import android.app.Service;
@@ -90,6 +93,18 @@ private class InnerSmsReceiver extends BroadcastReceiver{
 				if("1".equals(mode)|| "3".equals(mode)){
 					Log.i(TAG, "发现黑名单电话,拦截");
 					//在这里挂断电话
+					//反射serviceManager挂断电话,使用系统隐藏的服务
+					
+					String className="android.os.ServiceManager";
+					try {
+						Class clazz = CallSmsSafeService.class.getClassLoader().loadClass(className);
+						Method method =clazz.getMethod("getService",String.class);
+						IBinder iBinder =(IBinder)method.invoke(null, TELEPHONY_SERVICE);
+						ITelephony.Stub.asInterface(iBinder).endCall();//手动挂断电话
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
 				}
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:

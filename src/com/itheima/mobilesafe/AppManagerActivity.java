@@ -66,10 +66,7 @@ public class AppManagerActivity extends Activity {
 				TextView tv = new TextView(getApplicationContext());
 				tv.setTextColor(Color.RED);
 				tv.setText(packName);
-				if(null!=popWindow && popWindow.isShowing()){
-					popWindow.dismiss();//隐藏,
-					popWindow =null;//置null
-				}
+				dismissPopWindow();
 				popWindow = new PopupWindow(tv,LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 					int x = 60;// view.getLeft();
 				int[] location = new int[2];
@@ -101,15 +98,20 @@ public class AppManagerActivity extends Activity {
 					tips = "用户程序:"+userAppInfos.size()+"个";
 				}
 				tv_title_status.setText(tips);
-				if(null!=popWindow &&popWindow.isShowing()){
-					popWindow.dismiss();
-				}
+				dismissPopWindow();
 			}
+
 		});
 		
 		ll_loading =(LinearLayout)findViewById(R.id.ll_loading);
 		allAppInfos = new ArrayList<AppInfo>();
 		fillData();
+	}
+	private void dismissPopWindow() {
+		if(null!=popWindow &&popWindow.isShowing()){
+			popWindow.dismiss();
+			popWindow=null;
+		}
 	}
 	private List<AppInfo> allAppInfos;
 	//用户程序集合
@@ -237,6 +239,11 @@ public class AppManagerActivity extends Activity {
 		}
 
 		
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		dismissPopWindow();
 	}
 	static class ViewHolder{
 		FocusedTextView tv_name;

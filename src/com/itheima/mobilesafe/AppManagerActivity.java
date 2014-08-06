@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.StatFs;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,10 +37,14 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class AppManagerActivity extends Activity {
+public class AppManagerActivity extends Activity implements OnClickListener{
 	private TextView tv_title_status;
 	private PopupWindow popWindow;
 	private View contentView;
+	private LinearLayout ll_start;//启动
+	private LinearLayout ll_share;//分享
+	private LinearLayout ll_uninstall;//卸载
+	private AppInfo appInfo;//当前被点击的条目 对象
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,7 +59,7 @@ public class AppManagerActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				AppInfo appInfo;
+				
 				if(position==0){//第一个小标签,显示用户程序有多少个
 					return;
 				}else if(position == (userAppInfos.size()+1)){
@@ -66,12 +71,16 @@ public class AppManagerActivity extends Activity {
 					int newPosition = position-1-userAppInfos.size()-1;
 					appInfo = systemAppInfos.get(newPosition);
 				}	
-				String packName = appInfo.getPackName();
-//				TextView tv = new TextView(getApplicationContext());
-//				tv.setTextColor(Color.RED);
-//				tv.setText(packName);
+				
 				if(null==contentView){
 					contentView = View.inflate(getApplicationContext(), R.layout.popup_app_item, null);
+					ll_uninstall =(LinearLayout)contentView.findViewById(R.id.ll_uninstall);
+					ll_start =(LinearLayout)contentView.findViewById(R.id.ll_start);
+					ll_share =(LinearLayout)contentView.findViewById(R.id.ll_share);
+					//各个图标的点击事件
+					ll_uninstall.setOnClickListener(AppManagerActivity.this);
+					ll_start.setOnClickListener(AppManagerActivity.this);
+					ll_share.setOnClickListener(AppManagerActivity.this);
 				}
 				dismissPopWindow();
 				popWindow = new PopupWindow(contentView,LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
@@ -266,5 +275,24 @@ public class AppManagerActivity extends Activity {
 		FocusedTextView tv_name;
 		TextView tv_location;
 		ImageView iv_icon;
+	}
+	private static String TAG = "AppManagerActivity";
+	@Override
+	public void onClick(View v) {
+		dismissPopWindow();
+		switch (v.getId()) {
+		case R.id.ll_share:
+			Log.i(TAG,"分享"+appInfo.getAppName());
+			break;
+		case R.id.ll_start:
+			Log.i(TAG,"启动"+appInfo.getAppName());
+			break;
+		case R.id.ll_uninstall:
+			Log.i(TAG,"卸载"+appInfo.getAppName());
+			break;
+
+		default:
+			break;
+		}
 	}
 }

@@ -282,7 +282,7 @@ int id action_context_bar 0x7f07001d
 int id action_menu_divider 0x7f070016
 int id action_menu_presenter 0x7f070017
 int id action_mode_close_button 0x7f070024
-int id action_settings 0x7f070072
+int id action_settings 0x7f070075
 int id activity_chooser_view_content 0x7f070025
 int id always 0x7f07000b
 int id beginning 0x7f070011
@@ -290,7 +290,7 @@ int id bt_cancle 0x7f070060
 int id bt_ok 0x7f07005f
 int id cb_setup4_admin 0x7f070057
 int id cb_setup4_status 0x7f070056
-int id cb_status 0x7f070070
+int id cb_status 0x7f070073
 int id checkbox 0x7f07002d
 int id collapseActionView 0x7f07000d
 int id d 0x7f07003c
@@ -314,7 +314,7 @@ int id homeAsUp 0x7f070005
 int id icon 0x7f07002a
 int id ifRoom 0x7f07000a
 int id image 0x7f070027
-int id item_change_name 0x7f070071
+int id item_change_name 0x7f070074
 int id iv_app_icon 0x7f070063
 int id iv_callsms_delete 0x7f070069
 int id iv_callsms_icon 0x7f070066
@@ -324,6 +324,9 @@ int id iv_setup2_status 0x7f070054
 int id listMode 0x7f070001
 int id list_item 0x7f070029
 int id ll_loading 0x7f07003f
+int id ll_share 0x7f07006f
+int id ll_start 0x7f07006e
+int id ll_uninstall 0x7f07006d
 int id lv_app_manager 0x7f070040
 int id lv_callsms_safe 0x7f070044
 int id lv_contact 0x7f07004f
@@ -339,7 +342,7 @@ int id rb_all 0x7f07005e
 int id rb_phone 0x7f07005c
 int id rb_sms 0x7f07005d
 int id rg_mode 0x7f07005b
-int id rl_setting_update 0x7f07006f
+int id rl_setting_update 0x7f070072
 int id rl_splash_root 0x7f070058
 int id scv_change_location 0x7f070052
 int id search_badge 0x7f070032
@@ -373,7 +376,7 @@ int id tv_callsms_mode 0x7f070068
 int id tv_callsms_phone 0x7f070067
 int id tv_contact_name 0x7f07006a
 int id tv_contact_phone 0x7f07006b
-int id tv_desc 0x7f07006e
+int id tv_desc 0x7f070071
 int id tv_drag_view_bottom 0x7f070047
 int id tv_drag_view_top 0x7f070046
 int id tv_home_name 0x7f07006c
@@ -381,7 +384,7 @@ int id tv_lostfind_number 0x7f07004b
 int id tv_main_title 0x7f07004a
 int id tv_splash_progress 0x7f07005a
 int id tv_splash_version 0x7f070059
-int id tv_title 0x7f07006d
+int id tv_title 0x7f070070
 int id tv_title_status 0x7f070041
 int id up 0x7f070021
 int id useLogo 0x7f070003

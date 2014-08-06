@@ -1060,7 +1060,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f070016;
         public static final int action_menu_presenter=0x7f070017;
         public static final int action_mode_close_button=0x7f070024;
-        public static final int action_settings=0x7f070072;
+        public static final int action_settings=0x7f070075;
         public static final int activity_chooser_view_content=0x7f070025;
         public static final int always=0x7f07000b;
         public static final int beginning=0x7f070011;
@@ -1068,7 +1068,7 @@ containing a value of this type.
         public static final int bt_ok=0x7f07005f;
         public static final int cb_setup4_admin=0x7f070057;
         public static final int cb_setup4_status=0x7f070056;
-        public static final int cb_status=0x7f070070;
+        public static final int cb_status=0x7f070073;
         public static final int checkbox=0x7f07002d;
         public static final int collapseActionView=0x7f07000d;
         public static final int d=0x7f07003c;
@@ -1092,7 +1092,7 @@ containing a value of this type.
         public static final int icon=0x7f07002a;
         public static final int ifRoom=0x7f07000a;
         public static final int image=0x7f070027;
-        public static final int item_change_name=0x7f070071;
+        public static final int item_change_name=0x7f070074;
         public static final int iv_app_icon=0x7f070063;
         public static final int iv_callsms_delete=0x7f070069;
         public static final int iv_callsms_icon=0x7f070066;
@@ -1102,6 +1102,9 @@ containing a value of this type.
         public static final int listMode=0x7f070001;
         public static final int list_item=0x7f070029;
         public static final int ll_loading=0x7f07003f;
+        public static final int ll_share=0x7f07006f;
+        public static final int ll_start=0x7f07006e;
+        public static final int ll_uninstall=0x7f07006d;
         public static final int lv_app_manager=0x7f070040;
         public static final int lv_callsms_safe=0x7f070044;
         public static final int lv_contact=0x7f07004f;
@@ -1117,7 +1120,7 @@ containing a value of this type.
         public static final int rb_phone=0x7f07005c;
         public static final int rb_sms=0x7f07005d;
         public static final int rg_mode=0x7f07005b;
-        public static final int rl_setting_update=0x7f07006f;
+        public static final int rl_setting_update=0x7f070072;
         public static final int rl_splash_root=0x7f070058;
         public static final int scv_change_location=0x7f070052;
         public static final int search_badge=0x7f070032;
@@ -1151,7 +1154,7 @@ containing a value of this type.
         public static final int tv_callsms_phone=0x7f070067;
         public static final int tv_contact_name=0x7f07006a;
         public static final int tv_contact_phone=0x7f07006b;
-        public static final int tv_desc=0x7f07006e;
+        public static final int tv_desc=0x7f070071;
         public static final int tv_drag_view_bottom=0x7f070047;
         public static final int tv_drag_view_top=0x7f070046;
         public static final int tv_home_name=0x7f07006c;
@@ -1159,7 +1162,7 @@ containing a value of this type.
         public static final int tv_main_title=0x7f07004a;
         public static final int tv_splash_progress=0x7f07005a;
         public static final int tv_splash_version=0x7f070059;
-        public static final int tv_title=0x7f07006d;
+        public static final int tv_title=0x7f070070;
         public static final int tv_title_status=0x7f070041;
         public static final int up=0x7f070021;
         public static final int useLogo=0x7f070003;

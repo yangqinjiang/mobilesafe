@@ -8,6 +8,7 @@ import com.itheima.mobilesafe.domain.AppInfo;
 import com.itheima.mobilesafe.engine.AppInfoProvider;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class AppManagerActivity extends Activity {
@@ -105,16 +107,34 @@ public class AppManagerActivity extends Activity {
 		@Override
 		public int getCount() {
 //			return allAppInfos.size();
-			return userAppInfos.size()+systemAppInfos.size();
+			return userAppInfos.size()+systemAppInfos.size()+2;//多两个textView小标签
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
+			AppInfo appInfo;
+			if(position==0){//第一个小标签,显示用户程序有多少个
+				TextView tv = new TextView(getApplicationContext());
+				tv.setBackgroundColor(Color.GRAY);
+				tv.setText("用户程序:"+userAppInfos.size()+"个");
+				return tv;
+			}else if(position == (userAppInfos.size()+1)){
+				TextView tv = new TextView(getApplicationContext());
+				tv.setBackgroundColor(Color.GRAY);
+				tv.setText("系统程序:"+systemAppInfos.size()+"个");
+				return tv;
+			}else if(position<=userAppInfos.size()){//用户程序
+				int newPosition = position-1;
+				appInfo = userAppInfos.get(newPosition);
+			}else{//系统程序
+				int newPosition = position-1-userAppInfos.size()-1;
+				appInfo = systemAppInfos.get(newPosition);
+			}
+			
 			View view;
 			ViewHolder holder;
-			AppInfo appInfo ;//
-			
-			if(null!=convertView){
+			//判断历史convertView是否是RelativeLayout
+			if(null!=convertView && convertView instanceof RelativeLayout){
 				view = convertView;
 				holder = (ViewHolder)view.getTag();
 			}else{
@@ -124,14 +144,6 @@ public class AppManagerActivity extends Activity {
 				holder.tv_name=(TextView)view.findViewById(R.id.tv_app_name);
 				holder.tv_location=(TextView)view.findViewById(R.id.tv_app_location);
 				view.setTag(holder);
-			}
-			//判断位置,如果位置小于用户集合的大小
-			if(position<userAppInfos.size()){
-				//用户程序
-				appInfo = userAppInfos.get(position);
-			}else{
-				//有偏移位置
-				appInfo = systemAppInfos.get(position-userAppInfos.size());
 			}
 			holder.iv_icon.setImageDrawable(appInfo.getAppIcon());
 			holder.tv_name.setText(appInfo.getAppName());

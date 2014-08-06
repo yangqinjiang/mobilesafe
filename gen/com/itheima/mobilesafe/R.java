@@ -1025,24 +1025,28 @@ containing a value of this type.
         public static final int callmsgsafe=0x7f020062;
         public static final int drag=0x7f020063;
         public static final int ic_launcher=0x7f020064;
-        public static final int jiantou1=0x7f020065;
-        public static final int jiantou1_disable=0x7f020066;
-        public static final int jiantou1_pressed=0x7f020067;
-        public static final int jiantou_selector=0x7f020068;
-        public static final int list_devider=0x7f020069;
-        public static final int lock=0x7f02006a;
-        public static final int luncher_bg=0x7f02006b;
-        public static final int netmanager=0x7f02006c;
-        public static final int next=0x7f02006d;
-        public static final int phone=0x7f02006e;
-        public static final int previous=0x7f02006f;
-        public static final int safe=0x7f020070;
-        public static final int settings=0x7f020071;
-        public static final int setup1=0x7f020072;
-        public static final int sysoptimize=0x7f020073;
-        public static final int taskmanager=0x7f020074;
-        public static final int trojan=0x7f020075;
-        public static final int unlock=0x7f020076;
+        public static final int img1=0x7f020065;
+        public static final int img2=0x7f020066;
+        public static final int img3=0x7f020067;
+        public static final int jiantou1=0x7f020068;
+        public static final int jiantou1_disable=0x7f020069;
+        public static final int jiantou1_pressed=0x7f02006a;
+        public static final int jiantou_selector=0x7f02006b;
+        public static final int list_devider=0x7f02006c;
+        public static final int local_popup_bg=0x7f02006d;
+        public static final int lock=0x7f02006e;
+        public static final int luncher_bg=0x7f02006f;
+        public static final int netmanager=0x7f020070;
+        public static final int next=0x7f020071;
+        public static final int phone=0x7f020072;
+        public static final int previous=0x7f020073;
+        public static final int safe=0x7f020074;
+        public static final int settings=0x7f020075;
+        public static final int setup1=0x7f020076;
+        public static final int sysoptimize=0x7f020077;
+        public static final int taskmanager=0x7f020078;
+        public static final int trojan=0x7f020079;
+        public static final int unlock=0x7f02007a;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;
@@ -1233,10 +1237,11 @@ containing a value of this type.
         public static final int list_callsms_item=0x7f03002b;
         public static final int list_contact_item=0x7f03002c;
         public static final int list_home_item=0x7f03002d;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002e;
-        public static final int toast_address=0x7f03002f;
-        public static final int ui_setting_click_view=0x7f030030;
-        public static final int ui_setting_view=0x7f030031;
+        public static final int popup_app_item=0x7f03002e;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002f;
+        public static final int toast_address=0x7f030030;
+        public static final int ui_setting_click_view=0x7f030031;
+        public static final int ui_setting_view=0x7f030032;
     }
     public static final class menu {
         public static final int lost_find_menu=0x7f0e0000;

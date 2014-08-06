@@ -10,6 +10,7 @@ import com.itheima.mobilesafe.ui.FocusedTextView;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -20,6 +21,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AbsoluteLayout.LayoutParams;
@@ -36,6 +39,7 @@ import android.widget.TextView;
 public class AppManagerActivity extends Activity {
 	private TextView tv_title_status;
 	private PopupWindow popWindow;
+	private View contentView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -63,15 +67,28 @@ public class AppManagerActivity extends Activity {
 					appInfo = systemAppInfos.get(newPosition);
 				}	
 				String packName = appInfo.getPackName();
-				TextView tv = new TextView(getApplicationContext());
-				tv.setTextColor(Color.RED);
-				tv.setText(packName);
+//				TextView tv = new TextView(getApplicationContext());
+//				tv.setTextColor(Color.RED);
+//				tv.setText(packName);
+				if(null==contentView){
+					contentView = View.inflate(getApplicationContext(), R.layout.popup_app_item, null);
+				}
 				dismissPopWindow();
-				popWindow = new PopupWindow(tv,LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+				popWindow = new PopupWindow(contentView,LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+				//注意,一定要记得给popupWindow设置一个背景资源
+				//如果不去指定背景,动画不会被播放出来的
+				popWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 					int x = 60;// view.getLeft();
 				int[] location = new int[2];
 				view.getLocationInWindow(location);
 				popWindow.showAtLocation(parent,Gravity.LEFT|Gravity.TOP,x,location[1]);
+				ScaleAnimation sa = new ScaleAnimation(0.5f, 1.0f, 0.2f, 1.0f,
+						Animation.RELATIVE_TO_SELF,//水平方向 
+						0.5f, //中心开始
+						Animation.RELATIVE_TO_SELF,//垂直方向
+						0.5f);//中心开始
+				sa.setDuration(500);//持续时间
+				contentView.startAnimation(sa);//
 			}
 		});
 		//

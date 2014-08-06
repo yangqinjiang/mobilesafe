@@ -9,8 +9,10 @@ import com.itheima.mobilesafe.engine.AppInfoProvider;
 import com.itheima.mobilesafe.ui.FocusedTextView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -283,16 +285,49 @@ public class AppManagerActivity extends Activity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.ll_share:
 			Log.i(TAG,"分享"+appInfo.getAppName());
+			shareApplication();
 			break;
 		case R.id.ll_start:
 			Log.i(TAG,"启动"+appInfo.getAppName());
 			break;
 		case R.id.ll_uninstall:
 			Log.i(TAG,"卸载"+appInfo.getAppName());
+			uninstallApplication();
 			break;
 
 		default:
 			break;
 		}
+	}
+	//卸载应用程序
+	private void uninstallApplication() {
+		Intent intent = new Intent();
+		/**
+		 * action android.intent.action.DELETE
+		 * category android.intent.category.DEFAULT
+		 * data scheme package
+		 */
+		intent.setAction("android.intent.action.DELETE");
+		intent.addCategory("android.intent.category.DEFAULT");
+		intent.setData(Uri.parse("package:"+appInfo.getPackName()));
+//		startActivity(intent);
+		startActivityForResult(intent, 0);
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		//刷新界面
+		fillData();
+	}
+	private void shareApplication() {
+		Intent intent = new Intent();
+		//action android.intent.action.SEND
+//		category android.intent.category.DEFAULT
+		//data mimeType text/plain
+		intent.setAction("android.intent.action.SEND");
+		intent.addCategory("android.intent.category.DEFAULT");
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_TEXT, "推荐你使用一款软件,名称叫:"+appInfo.getAppName()+"下载地址:....."+appInfo.getPackName());
+		startActivity(intent);
 	}
 }

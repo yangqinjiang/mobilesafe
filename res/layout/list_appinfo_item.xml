@@ -11,8 +11,10 @@
         android:layout_marginTop="3dip"
         android:src="@drawable/app" />
 
-    <TextView
+    <com.itheima.mobilesafe.ui.FocusedTextView
         android:id="@+id/tv_app_name"
+        android:singleLine="true"
+        android:ellipsize="marquee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dip"

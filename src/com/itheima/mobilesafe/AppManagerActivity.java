@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.itheima.mobilesafe.domain.AppInfo;
 import com.itheima.mobilesafe.engine.AppInfoProvider;
+import com.itheima.mobilesafe.ui.FocusedTextView;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -14,20 +15,27 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.StatFs;
 import android.text.format.Formatter;
+import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AbsoluteLayout.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class AppManagerActivity extends Activity {
 	private TextView tv_title_status;
+	private PopupWindow popWindow;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +44,39 @@ public class AppManagerActivity extends Activity {
 		tv_avail_rom=(TextView)findViewById(R.id.tv_avail_rom);
 		tv_avail_sd=(TextView)findViewById(R.id.tv_avail_sd);
 		lv_app_manager=(ListView)findViewById(R.id.lv_app_manager);
+		//
+		lv_app_manager.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				AppInfo appInfo;
+				if(position==0){//第一个小标签,显示用户程序有多少个
+					return;
+				}else if(position == (userAppInfos.size()+1)){
+					return ;
+				}else if(position<=userAppInfos.size()){//用户程序
+					int newPosition = position-1;
+					appInfo = userAppInfos.get(newPosition);
+				}else{//系统程序
+					int newPosition = position-1-userAppInfos.size()-1;
+					appInfo = systemAppInfos.get(newPosition);
+				}	
+				String packName = appInfo.getPackName();
+				TextView tv = new TextView(getApplicationContext());
+				tv.setTextColor(Color.RED);
+				tv.setText(packName);
+				if(null!=popWindow && popWindow.isShowing()){
+					popWindow.dismiss();//隐藏,
+					popWindow =null;//置null
+				}
+				popWindow = new PopupWindow(tv,LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+					int x = 60;// view.getLeft();
+				int[] location = new int[2];
+				view.getLocationInWindow(location);
+				popWindow.showAtLocation(parent,Gravity.LEFT|Gravity.TOP,x,location[1]);
+			}
+		});
 		//
 		tv_avail_rom.setText("内存可用:"+getAvailRom());//可用内存大小
 		tv_avail_sd.setText("SD卡可用:"+getAvailSD());
@@ -60,6 +101,9 @@ public class AppManagerActivity extends Activity {
 					tips = "用户程序:"+userAppInfos.size()+"个";
 				}
 				tv_title_status.setText(tips);
+				if(null!=popWindow &&popWindow.isShowing()){
+					popWindow.dismiss();
+				}
 			}
 		});
 		
@@ -169,7 +213,7 @@ public class AppManagerActivity extends Activity {
 				view = View.inflate(getApplicationContext(), R.layout.list_appinfo_item, null);
 				holder = new ViewHolder();
 				holder.iv_icon = (ImageView)view.findViewById(R.id.iv_app_icon);
-				holder.tv_name=(TextView)view.findViewById(R.id.tv_app_name);
+				holder.tv_name=(FocusedTextView)view.findViewById(R.id.tv_app_name);
 				holder.tv_location=(TextView)view.findViewById(R.id.tv_app_location);
 				view.setTag(holder);
 			}
@@ -195,7 +239,7 @@ public class AppManagerActivity extends Activity {
 		
 	}
 	static class ViewHolder{
-		TextView tv_name;
+		FocusedTextView tv_name;
 		TextView tv_location;
 		ImageView iv_icon;
 	}

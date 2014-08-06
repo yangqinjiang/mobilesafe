@@ -40,6 +40,10 @@ public class AppManagerActivity extends Activity {
 		fillData();
 	}
 	private List<AppInfo> allAppInfos;
+	//用户程序集合
+	private List<AppInfo> userAppInfos;
+	//系统程序集合
+	private List<AppInfo> systemAppInfos;
 	private Handler handler = new Handler(){
 		public void handleMessage(android.os.Message msg) {
 			ll_loading.setVisibility(View.INVISIBLE);//隐藏
@@ -53,6 +57,15 @@ public class AppManagerActivity extends Activity {
 		new Thread(){
 			public void run() {
 				allAppInfos = AppInfoProvider.getAppInfos(getApplicationContext());
+				userAppInfos = new ArrayList<AppInfo>();
+				systemAppInfos = new ArrayList<AppInfo>();
+				for(AppInfo appinfo:allAppInfos){
+					if(appinfo.isUserApp()){
+						userAppInfos.add(appinfo);
+					}else{
+						systemAppInfos.add(appinfo);
+					}
+				}
 				handler.sendEmptyMessage(0);
 			};
 		}.start();
@@ -91,13 +104,16 @@ public class AppManagerActivity extends Activity {
 
 		@Override
 		public int getCount() {
-			return allAppInfos.size();
+//			return allAppInfos.size();
+			return userAppInfos.size()+systemAppInfos.size();
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view;
 			ViewHolder holder;
+			AppInfo appInfo ;//
+			
 			if(null!=convertView){
 				view = convertView;
 				holder = (ViewHolder)view.getTag();
@@ -109,7 +125,14 @@ public class AppManagerActivity extends Activity {
 				holder.tv_location=(TextView)view.findViewById(R.id.tv_app_location);
 				view.setTag(holder);
 			}
-			AppInfo appInfo = allAppInfos.get(position);
+			//判断位置,如果位置小于用户集合的大小
+			if(position<userAppInfos.size()){
+				//用户程序
+				appInfo = userAppInfos.get(position);
+			}else{
+				//有偏移位置
+				appInfo = systemAppInfos.get(position-userAppInfos.size());
+			}
 			holder.iv_icon.setImageDrawable(appInfo.getAppIcon());
 			holder.tv_name.setText(appInfo.getAppName());
 			if(appInfo.isInRom()){

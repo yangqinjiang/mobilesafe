@@ -17,6 +17,8 @@ import android.text.format.Formatter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class AppManagerActivity extends Activity {
+	private TextView tv_title_status;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +39,29 @@ public class AppManagerActivity extends Activity {
 		//
 		tv_avail_rom.setText("内存可用:"+getAvailRom());//可用内存大小
 		tv_avail_sd.setText("SD卡可用:"+getAvailSD());
+		tv_title_status=(TextView)findViewById(R.id.tv_title_status);
+		lv_app_manager.setOnScrollListener(new OnScrollListener() {
+			//滚动事件发生变化时的调用的方法
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				
+			}
+			//滚动时调用的方法
+			@Override
+			public void onScroll(AbsListView view, 
+					int firstVisibleItem,//第一个可见的条目
+					int visibleItemCount,//可见的条目数量 
+					int totalItemCount) {//总条目
+				if(userAppInfos==null || systemAppInfos==null )return;
+				String tips = "";
+				if(firstVisibleItem>=(userAppInfos.size()+1)){//系统程序
+					tips = "系统程序:"+systemAppInfos.size()+"个";
+				}else{
+					tips = "用户程序:"+userAppInfos.size()+"个";
+				}
+				tv_title_status.setText(tips);
+			}
+		});
 		
 		ll_loading =(LinearLayout)findViewById(R.id.ll_loading);
 		allAppInfos = new ArrayList<AppInfo>();
@@ -116,11 +142,13 @@ public class AppManagerActivity extends Activity {
 			if(position==0){//第一个小标签,显示用户程序有多少个
 				TextView tv = new TextView(getApplicationContext());
 				tv.setBackgroundColor(Color.GRAY);
+				tv.setTextColor(Color.WHITE);
 				tv.setText("用户程序:"+userAppInfos.size()+"个");
 				return tv;
 			}else if(position == (userAppInfos.size()+1)){
 				TextView tv = new TextView(getApplicationContext());
 				tv.setBackgroundColor(Color.GRAY);
+				tv.setTextColor(Color.WHITE);
 				tv.setText("系统程序:"+systemAppInfos.size()+"个");
 				return tv;
 			}else if(position<=userAppInfos.size()){//用户程序

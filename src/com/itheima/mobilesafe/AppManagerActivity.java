@@ -10,6 +10,9 @@ import com.itheima.mobilesafe.ui.FocusedTextView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -38,6 +41,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AppManagerActivity extends Activity implements OnClickListener{
 	private TextView tv_title_status;
@@ -289,6 +293,7 @@ public class AppManagerActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.ll_start:
 			Log.i(TAG,"启动"+appInfo.getAppName());
+			startApplication();
 			break;
 		case R.id.ll_uninstall:
 			Log.i(TAG,"卸载"+appInfo.getAppName());
@@ -297,6 +302,31 @@ public class AppManagerActivity extends Activity implements OnClickListener{
 
 		default:
 			break;
+		}
+	}
+	/**
+	 * 启动应用程序
+	 * 开启应用程序就是开启这个应用程序的第一个activity
+	 */
+	private void startApplication() {
+		//获取清单文件里面的第一个activity
+		PackageManager pm = getPackageManager();
+		try{
+			//加入标志,懒惰加载
+			PackageInfo info = pm.getPackageInfo(appInfo.getPackName(),PackageManager.GET_ACTIVITIES);
+			ActivityInfo[] infos = info.activities;
+			if(infos!=null && infos.length>0){
+				ActivityInfo actInfo  = infos[0];
+				String actName = actInfo.name;//class 全路径名
+				String packName = actInfo.packageName;//包名
+				Intent intent = new Intent();
+				intent.setClassName(packName, actName);
+				startActivity(intent);
+			}else{
+				Toast.makeText(this, "当前应用程序没有界面",0).show();
+			}
+		}catch(Exception e){
+			Toast.makeText(this, "无法启动当前应用程序",0).show();
 		}
 	}
 	//卸载应用程序

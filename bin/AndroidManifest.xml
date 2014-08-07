@@ -76,6 +76,9 @@
         </activity>
         <activity android:name="com.itheima.mobilesafe.AppManagerActivity" >
         </activity>
+        <activity android:name="com.itheima.mobilesafe.AppLockActivity" >
+        </activity>
+        
         
         <receiver android:name="com.itheima.mobilesafe.receiver.BootCompleteReceiver" >
             <intent-filter>

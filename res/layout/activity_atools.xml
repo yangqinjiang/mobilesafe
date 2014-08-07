@@ -39,4 +39,10 @@
             android:paddingTop="5dip"
             android:onClick="smsRestore"
             android:text="短信还原" />
+               <Button
+            android:drawableLeft="@android:drawable/btn_star_big_on"
+            style="@style/text_content_style"
+            android:paddingTop="5dip"
+            android:onClick="enterAppLock"
+            android:text="程序锁" />
 </LinearLayout>

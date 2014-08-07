@@ -109,4 +109,9 @@ public class AtoolsActivity extends Activity implements SmsToolsCallBack {
 	public void endSmsBackup() {
 
 	}
+	//进入程序锁界面
+	public void enterAppLock(View view){
+		Intent intent = new Intent(this, AppLockActivity.class);
+		startActivity(intent);
+	}
 }

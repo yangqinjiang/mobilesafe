@@ -1,7 +1,7 @@
 *.class
 *.apk
 gen/
-bin/
+bin/*.*
 .settings/
 # Windows image file caches
 Thumbs.db
@@ -44,3 +44,4 @@ Icon
 
 /bin
 /gen
+bin/R.txt

@@ -1,5 +1,8 @@
 package com.itheima.mobilesafe.db.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -63,5 +66,23 @@ public class AppLockDao {
 		cursor.close();
 		db.close();
 		return result;
+	}
+	/**
+	 * 查询所有应用程序包名
+	 * 
+	 * @param packname
+	 *           应用程序包名
+	 */
+	public List<String> findAll() {
+		List<String> results =new ArrayList<String>();
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.query("applock", new String[]{"packname"},null,
+				null, null, null, null);
+		while(cursor.moveToNext()){
+			results.add(cursor.getString(0));
+		}
+		cursor.close();
+		db.close();
+		return results;
 	}
 }

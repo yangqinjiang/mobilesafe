@@ -3,10 +3,12 @@ package com.itheima.mobilesafe.db.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 
 import com.itheima.mobilesafe.db.AppLockDBOpenHelper;
 
@@ -18,8 +20,10 @@ public class AppLockDao {
 
 	private AppLockDBOpenHelper helper;
 
+	private ContentResolver resolver;
 	public AppLockDao(Context context) {
 		helper = new AppLockDBOpenHelper(context);
+		resolver=context.getContentResolver();
 	}
 
 	/**
@@ -34,9 +38,13 @@ public class AppLockDao {
 		values.put("packname", packname);
 		long rowid = db.insert("applock", null, values);
 		db.close();
+		if(rowid!=-1){
+			notifyWatchDog();
+		}
 		return rowid != -1;
 	}
 
+	public static final String APP_LOCK_URI = "content://com.itheima.mobliesafe.applock";
 	/**
 	 * 删除一条应用程序包名
 	 * 
@@ -48,7 +56,16 @@ public class AppLockDao {
 		int rawCount = db.delete("applock", "packname=?",
 				new String[] { packname });
 		db.close();
+		if(rawCount>0){
+			notifyWatchDog();
+		}
 		return rawCount > 0;
+	}
+
+	private void notifyWatchDog() {
+		Uri uri = Uri.parse(APP_LOCK_URI);
+		//通知内容观察者
+		resolver.notifyChange(uri, null);//无接收者
 	}
 
 

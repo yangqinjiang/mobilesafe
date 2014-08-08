@@ -10,9 +10,13 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -58,11 +62,12 @@ public class WatchDogService extends Service {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			tempStopProtectPacknames.clear();// 在屏幕锁屏里,清空
-			flag=false;
-			
+			flag = false;
+
 		}
 
 	}
+
 	/**
 	 * 解锁广播接收者
 	 */
@@ -70,16 +75,16 @@ public class WatchDogService extends Service {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if(!flag){//解决多次启动问题
-				flag=true;
+			if (!flag) {// 解决多次启动问题
+				flag = true;
 				startWatchDog();
 			}
 		}
 
 	}
-	
 
 	private List<String> protectePackNames;
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -88,27 +93,46 @@ public class WatchDogService extends Service {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(EnterPwdActivity.WATCH_DOG_ACTION);
 		registerReceiver(receiver, filter);
-		//screenOffReceiver
+		// screenOffReceiver
 		screenOffReceiver = new ScreenOffReceiver();
 		IntentFilter offFilter = new IntentFilter();
 		offFilter.addAction(Intent.ACTION_SCREEN_OFF);
 		registerReceiver(screenOffReceiver, offFilter);
 
-		//ScreenOnReceiver
+		// ScreenOnReceiver
 		screenOnReceiver = new ScreenOnReceiver();
 		IntentFilter onFilter = new IntentFilter();
 		onFilter.addAction(Intent.ACTION_SCREEN_ON);
 		registerReceiver(screenOnReceiver, onFilter);
-		
+
 		dao = new AppLockDao(this);
-		protectePackNames = dao.findAll();//将数据库里的数据保存到内存
+		protectePackNames = dao.findAll();// 将数据库里的数据保存到内存,但有bug,不能立即更新内存里的数据
 		intent = new Intent(this, EnterPwdActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 在服务里启动activity
 		flag = true;
 		// 请看门狗,监视当前手机运行的程序
 		am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-		
+
 		startWatchDog();
+		Uri uri = Uri.parse(AppLockDao.APP_LOCK_URI);
+		observer = new AppLockObserver(new Handler());
+		getContentResolver().registerContentObserver(uri, true,observer );
+	}
+	private AppLockObserver observer;
+	//内容观察者
+	private class AppLockObserver extends ContentObserver {
+
+		public AppLockObserver(Handler handler) {
+			super(handler);
+		}
+
+		@Override
+		public void onChange(boolean selfChange) {
+			super.onChange(selfChange);
+			Log.i(TAG, "数据库的内容变化了,但是被我给观察到了");
+			protectePackNames = dao.findAll();
+		}
+
 	}
 
 	private void startWatchDog() {
@@ -123,7 +147,7 @@ public class WatchDogService extends Service {
 					// 得到正在打开的程序
 					// 清空tempStopProtectPacknames
 					String packname = info.topActivity.getPackageName();
-					if (protectePackNames.contains(packname)) {//从内存里查找数据
+					if (protectePackNames.contains(packname)) {// 从内存里查找数据
 						// 弹出输入密码的界面
 						// 已经包含,需要临时停止保护
 						if (!tempStopProtectPacknames.contains(packname)) {
@@ -152,6 +176,9 @@ public class WatchDogService extends Service {
 		unregisterReceiver(screenOffReceiver);
 		screenOffReceiver = null;
 		unregisterReceiver(screenOnReceiver);
-		screenOnReceiver=null;
+		screenOnReceiver = null;
+		
+		getContentResolver().unregisterContentObserver(observer);
+		observer=null;
 	}
 }

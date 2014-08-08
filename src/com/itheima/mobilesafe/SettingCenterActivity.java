@@ -139,7 +139,7 @@ public class SettingCenterActivity extends Activity {
 		boolean WatchDogRunning = ServiceUtils.isServiceRunning(this,
 				"com.itheima.mobilesafe.service.WatchDogService");
 
-		sv_callsms_safe.setChecked(WatchDogRunning);
+		sv_watch_dog.setChecked(WatchDogRunning);
 	}
 	
 	@Override

@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -27,7 +28,16 @@ public class WatchDogService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		return null;
+		return new MyBinder();
+	}
+	/**
+	 * 中间人类型
+	 *
+	 */
+	public class MyBinder extends Binder{
+		public void callTempStopProtect(String packname){
+			tempStopProtect(packname);
+		}
 	}
 
 	private ActivityManager am;
@@ -117,6 +127,12 @@ public class WatchDogService extends Service {
 		Uri uri = Uri.parse(AppLockDao.APP_LOCK_URI);
 		observer = new AppLockObserver(new Handler());
 		getContentResolver().registerContentObserver(uri, true,observer );
+	}
+	/**
+	 * 临时停止对某个应用程序的保护
+	 */
+	public void tempStopProtect(String packname){
+		tempStopProtectPacknames.add(packname);
 	}
 	private AppLockObserver observer;
 	//内容观察者

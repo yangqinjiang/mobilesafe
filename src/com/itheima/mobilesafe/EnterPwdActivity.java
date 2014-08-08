@@ -1,11 +1,17 @@
 package com.itheima.mobilesafe;
 
+import com.itheima.mobilesafe.service.WatchDogService;
+import com.itheima.mobilesafe.service.WatchDogService.MyBinder;
+
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,22 +57,44 @@ public class EnterPwdActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//绑定服务
+		Intent service = new Intent(this,WatchDogService.class);
+		conn =  new MyConn();
+		bindService(service,conn,BIND_AUTO_CREATE);
+	}
+	private  MyConn conn;
+	private MyBinder binder;
+	private class MyConn implements ServiceConnection{
+
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			//服务成功绑定的时候调用的方法
+			binder =(MyBinder)service;
+		}
+
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			
+		}
+		
 	}
 
 	public void click(View v) {
 		String pwd = et_password.getText().toString().trim();
 		if("123".equals(pwd)){//默认值
 			finish();
-			//通知看门狗,停止对当前应用程序的保护
-			//自定义广播事件
-			Intent intent = new Intent();
-			intent.putExtra(PACK_NAME, packname);
-			intent.setAction(WATCH_DOG_ACTION);
-			sendBroadcast(intent);
+			//通过绑定服务的方式调用服务里面的方法
+			binder.callTempStopProtect(packname);
 			
 		}else{
 			Toast.makeText(this, "密码错误...",Toast.LENGTH_LONG).show();
 		}
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unbindService(conn);
+		conn=null;
 	}
 	@Override
 	public void onBackPressed() {

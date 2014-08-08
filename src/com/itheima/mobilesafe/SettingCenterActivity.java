@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.itheima.mobilesafe.service.AddressService;
 import com.itheima.mobilesafe.service.CallSmsSafeService;
+import com.itheima.mobilesafe.service.WatchDogService;
 import com.itheima.mobilesafe.ui.SettingClickView;
 import com.itheima.mobilesafe.ui.SettingView;
 import com.itheima.mobilesafe.utils.ServiceUtils;
@@ -25,6 +26,9 @@ public class SettingCenterActivity extends Activity {
 	//黑名单拦截设置
 	private SettingView sv_callsms_safe;
 	private Intent callSmsSafeIntent;
+	//程序锁
+	private SettingView sv_watch_dog;
+	private Intent watchDogIntent;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -101,6 +105,23 @@ public class SettingCenterActivity extends Activity {
 				}
 			}
 		});
+		//sv_watch_dog
+		sv_watch_dog = (SettingView) findViewById(R.id.sv_watch_dog);
+		watchDogIntent = new Intent(this, WatchDogService.class);
+		//checkService();
+		sv_watch_dog.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (sv_watch_dog.isChecked()) {
+					sv_watch_dog.setChecked(false);
+					stopService(watchDogIntent);
+				} else {
+					sv_watch_dog.setChecked(true);
+					startService(watchDogIntent);
+				}
+			}
+		});
 		checkService();
 	}
 
@@ -114,6 +135,11 @@ public class SettingCenterActivity extends Activity {
 				"com.itheima.mobilesafe.service.CallSmsSafeService");
 
 		sv_callsms_safe.setChecked(callSmsServiceRunning);
+		//
+		boolean WatchDogRunning = ServiceUtils.isServiceRunning(this,
+				"com.itheima.mobilesafe.service.WatchDogService");
+
+		sv_callsms_safe.setChecked(WatchDogRunning);
 	}
 	
 	@Override

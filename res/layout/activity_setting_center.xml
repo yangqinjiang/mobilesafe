@@ -16,6 +16,7 @@
         itheima:desc_off="自动更新已经关闭"
         itheima:desc_on="自动更新已经开启"
         itheima:title_show="自动更新设置" />
+
     <com.itheima.mobilesafe.ui.SettingView
         android:id="@+id/sv_show_address"
         android:layout_width="match_parent"
@@ -23,18 +24,28 @@
         itheima:desc_off="来电归属地显示没有开启"
         itheima:desc_on="来电归属地显示已经开启"
         itheima:title_show="来电归属地显示设置" />
+
     <com.itheima.mobilesafe.ui.SettingClickView
         android:id="@+id/scv_change_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         itheima:desc_on="设置归属地提示框的显示位置"
         itheima:title_show="归属地提示框位置" />
-        <com.itheima.mobilesafe.ui.SettingView
+
+    <com.itheima.mobilesafe.ui.SettingView
         android:id="@+id/sv_callsms_safe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         itheima:desc_off="电话短信黑名单服务已经关闭"
         itheima:desc_on="电话短信黑名单服务已经开启"
         itheima:title_show="电话短信拦截设置" />
+
+    <com.itheima.mobilesafe.ui.SettingView
+        android:id="@+id/sv_watch_dog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        itheima:desc_off="程序锁服务已经关闭"
+        itheima:desc_on="程序锁服务已经开启"
+        itheima:title_show="程序锁设置" />
 
 </LinearLayout>

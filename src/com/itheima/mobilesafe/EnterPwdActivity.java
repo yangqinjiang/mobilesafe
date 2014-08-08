@@ -2,14 +2,26 @@ package com.itheima.mobilesafe;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
+/**
+ * 在清单文件里,        
+ * android:launchMode="singleInstance" 开启新的任务栈,只有一个实例,这样,就能解决
+ * 在本程序在运行时,出现一个bug,因为一个程序可能有多个任务栈
+ *
+ */
 public class EnterPwdActivity extends Activity {
 	private EditText et_password;
 	private String packname ="";
+	private TextView tv_name;
+	private ImageView iv_icon;
 	/**
 	 * 看门狗的动作
 	 */
@@ -25,6 +37,18 @@ public class EnterPwdActivity extends Activity {
 		et_password = (EditText) findViewById(R.id.et_password);
 		Intent intent = getIntent();
 		packname = intent.getStringExtra(PACK_NAME);
+		tv_name =(TextView)findViewById(R.id.tv_name);
+		iv_icon =(ImageView)findViewById(R.id.iv_icon);
+		
+		PackageManager pm = getPackageManager();
+		try {
+			ApplicationInfo applicationInfo = pm.getApplicationInfo(packname, 0);
+			iv_icon.setImageDrawable(applicationInfo.loadIcon(pm));
+			tv_name.setText(applicationInfo.loadLabel(pm));
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void click(View v) {

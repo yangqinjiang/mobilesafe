@@ -15,6 +15,8 @@ import android.widget.Toast;
  * 在清单文件里,        
  * android:launchMode="singleInstance" 开启新的任务栈,只有一个实例,这样,就能解决
  * 在本程序在运行时,出现一个bug,因为一个程序可能有多个任务栈
+ * android:excludeFromRecents="true" 历史记录取消记录
+ * 
  *
  */
 public class EnterPwdActivity extends Activity {

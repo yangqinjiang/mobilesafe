@@ -193,4 +193,32 @@ private TaskManagerAdapter adapter;
 		CheckBox cb_status;
 
 	}
+	
+	/**
+	 * 选择全部
+	 * @param view
+	 */
+	public void selectAll(View view){
+		for(TaskInfo info:userTaskInfos){
+			info.setChecked(true);
+		}
+		for(TaskInfo info:systemTaskInfos){
+			info.setChecked(true);
+		}
+		adapter.notifyDataSetChanged();
+	}
+
+	/**
+	 * 反选
+	 * @param view
+	 */
+	public void selectOpposite(View view){
+		for(TaskInfo info:userTaskInfos){
+			info.setChecked(!info.isChecked());
+		}
+		for(TaskInfo info:systemTaskInfos){
+			info.setChecked(!info.isChecked());
+		}
+		adapter.notifyDataSetChanged();
+	}
 }

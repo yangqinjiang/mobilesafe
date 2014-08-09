@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/iv_task_icon"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_marginLeft="6dip"
+        android:layout_marginTop="3dip"
+        android:src="@drawable/app" />
+    <TextView
+        android:id="@+id/tv_task_name"
+        android:layout_toRightOf="@id/iv_task_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="程序名称"
+        android:textSize="20sp"
+        android:layout_marginLeft="3dip"
+        android:layout_marginTop="5dip"
+        android:textColor="#000000"/>
+<TextView
+        android:id="@+id/tv_task_mem"
+        android:layout_below="@id/tv_task_name"
+        android:layout_toRightOf="@id/iv_task_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="内存大小:xxM"
+        android:textSize="14sp"
+        android:layout_marginLeft="3dip"
+        android:layout_marginTop="5dip"
+        android:textColor="#99000000"/>
+    <CheckBox 
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dip"
+        android:layout_alignParentRight="true"
+        />
+    
+</RelativeLayout>

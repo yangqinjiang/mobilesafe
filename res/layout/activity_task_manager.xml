@@ -60,13 +60,7 @@
             android:layout_height="match_parent" >
         </ListView>
 
-        <TextView
-            android:id="@+id/tv_title_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ff888888"
-            android:text="用户进程:4个"
-            android:textColor="#ffffff" />
+       
     </FrameLayout>
 
 </LinearLayout>

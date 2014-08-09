@@ -294,7 +294,7 @@ int id bt_cancle 0x7f07006f
 int id bt_ok 0x7f07006e
 int id cb_setup4_admin 0x7f070063
 int id cb_setup4_status 0x7f070062
-int id cb_status 0x7f070087
+int id cb_status 0x7f070081
 int id checkbox 0x7f07002d
 int id collapseActionView 0x7f07000d
 int id d 0x7f070044
@@ -333,9 +333,9 @@ int id listMode 0x7f070001
 int id list_item 0x7f070029
 int id ll_loading 0x7f070047
 int id ll_locked 0x7f070041
-int id ll_share 0x7f070083
-int id ll_start 0x7f070082
-int id ll_uninstall 0x7f070081
+int id ll_share 0x7f070084
+int id ll_start 0x7f070083
+int id ll_uninstall 0x7f070082
 int id ll_unlock 0x7f07003e
 int id lv_app_manager 0x7f070048
 int id lv_callsms_safe 0x7f07004c
@@ -355,7 +355,7 @@ int id rb_all 0x7f07006d
 int id rb_phone 0x7f07006b
 int id rb_sms 0x7f07006c
 int id rg_mode 0x7f07006a
-int id rl_setting_update 0x7f070086
+int id rl_setting_update 0x7f070087
 int id rl_splash_root 0x7f070064
 int id scv_change_location 0x7f07005d
 int id search_badge 0x7f070032
@@ -390,7 +390,7 @@ int id tv_callsms_mode 0x7f070079
 int id tv_callsms_phone 0x7f070078
 int id tv_contact_name 0x7f07007b
 int id tv_contact_phone 0x7f07007c
-int id tv_desc 0x7f070085
+int id tv_desc 0x7f070086
 int id tv_drag_view_bottom 0x7f07004f
 int id tv_drag_view_top 0x7f07004e
 int id tv_home_name 0x7f07007d
@@ -406,7 +406,7 @@ int id tv_splash_version 0x7f070065
 int id tv_status 0x7f070076
 int id tv_task_mem 0x7f070080
 int id tv_task_name 0x7f07007f
-int id tv_title 0x7f070084
+int id tv_title 0x7f070085
 int id tv_title_status 0x7f070049
 int id tv_unlock 0x7f07003c
 int id tv_unlock_count 0x7f07003f

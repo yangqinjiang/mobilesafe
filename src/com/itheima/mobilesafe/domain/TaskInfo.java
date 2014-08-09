@@ -12,6 +12,7 @@ public class TaskInfo {
 	 * 用户进程
 	 */
 	private boolean userTask;
+	private boolean checked;
 	public String getAppName() {
 		return appName;
 	}
@@ -58,6 +59,14 @@ public class TaskInfo {
 		return "TaskInfo [appName=" + appName + ", memSize=" + memSize
 				+ ", packName=" + packName + "]";
 	}
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+	
+	
 	
 	
 }

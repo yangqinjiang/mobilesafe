@@ -15,7 +15,10 @@ import android.text.format.Formatter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -55,16 +58,31 @@ public class TaskManagerActivity extends Activity {
 		tv_mem_info.setText("剩余内存:" + Formatter.formatFileSize(this, availRam));
 
 		lv_task_manager = (ListView) findViewById(R.id.lv_task_manager);
+		//checkbox点击事件
+		lv_task_manager.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Object obj = lv_task_manager.getItemAtPosition(position);//调用adapter.getItem
+				if(obj!=null){
+					TaskInfo ti =(TaskInfo)obj;
+					ti.setChecked(!ti.isChecked());//相反勾选
+					//通知更新
+					adapter.notifyDataSetChanged();
+				}
+			}
+		});
 		// 开启子线程获取数量
 		fillData();
 
 	}
-
+private TaskManagerAdapter adapter;
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			ll_loading.setVisibility(View.INVISIBLE);
-			lv_task_manager.setAdapter(new TaskManagerAdapter());
+			adapter= new TaskManagerAdapter();
+			lv_task_manager.setAdapter(adapter);
 		};
 	};
 
@@ -131,6 +149,7 @@ public class TaskManagerActivity extends Activity {
 				holder.tv_name = (TextView) view
 						.findViewById(R.id.tv_task_name);
 				holder.tv_mem = (TextView) view.findViewById(R.id.tv_task_mem);
+				holder.cb_status =(CheckBox)view.findViewById(R.id.cb_status);
 				view.setTag(holder);
 			}
 			
@@ -139,12 +158,25 @@ public class TaskManagerActivity extends Activity {
 			holder.tv_mem.setText("内存占用:"
 					+ Formatter.formatFileSize(getApplicationContext(),
 							taskInfo.getMemSize()));
+			//记录勾选状态
+			holder.cb_status.setChecked(taskInfo.isChecked());
 			return view;
 		}
 
 		@Override
 		public Object getItem(int position) {
-			return null;
+			TaskInfo taskInfo = null;
+			
+			if(position==0){
+				return null;
+			}else if(position==(userTaskInfos.size()+1)){
+				return null;
+			}else if(position<=userTaskInfos.size()){//用户进程
+				taskInfo = userTaskInfos.get(position-1);
+			}else{//系统进程
+				taskInfo = systemTaskInfos.get(position-1-userTaskInfos.size()-1);
+			}
+			return taskInfo;
 		}
 
 		@Override
@@ -158,6 +190,7 @@ public class TaskManagerActivity extends Activity {
 		ImageView iv_icon;
 		TextView tv_name;
 		TextView tv_mem;
+		CheckBox cb_status;
 
 	}
 }

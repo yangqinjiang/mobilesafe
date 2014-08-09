@@ -1072,7 +1072,7 @@ containing a value of this type.
         public static final int bt_ok=0x7f07006e;
         public static final int cb_setup4_admin=0x7f070063;
         public static final int cb_setup4_status=0x7f070062;
-        public static final int cb_status=0x7f070087;
+        public static final int cb_status=0x7f070081;
         public static final int checkbox=0x7f07002d;
         public static final int collapseActionView=0x7f07000d;
         public static final int d=0x7f070044;
@@ -1111,9 +1111,9 @@ containing a value of this type.
         public static final int list_item=0x7f070029;
         public static final int ll_loading=0x7f070047;
         public static final int ll_locked=0x7f070041;
-        public static final int ll_share=0x7f070083;
-        public static final int ll_start=0x7f070082;
-        public static final int ll_uninstall=0x7f070081;
+        public static final int ll_share=0x7f070084;
+        public static final int ll_start=0x7f070083;
+        public static final int ll_uninstall=0x7f070082;
         public static final int ll_unlock=0x7f07003e;
         public static final int lv_app_manager=0x7f070048;
         public static final int lv_callsms_safe=0x7f07004c;
@@ -1133,7 +1133,7 @@ containing a value of this type.
         public static final int rb_phone=0x7f07006b;
         public static final int rb_sms=0x7f07006c;
         public static final int rg_mode=0x7f07006a;
-        public static final int rl_setting_update=0x7f070086;
+        public static final int rl_setting_update=0x7f070087;
         public static final int rl_splash_root=0x7f070064;
         public static final int scv_change_location=0x7f07005d;
         public static final int search_badge=0x7f070032;
@@ -1168,7 +1168,7 @@ containing a value of this type.
         public static final int tv_callsms_phone=0x7f070078;
         public static final int tv_contact_name=0x7f07007b;
         public static final int tv_contact_phone=0x7f07007c;
-        public static final int tv_desc=0x7f070085;
+        public static final int tv_desc=0x7f070086;
         public static final int tv_drag_view_bottom=0x7f07004f;
         public static final int tv_drag_view_top=0x7f07004e;
         public static final int tv_home_name=0x7f07007d;
@@ -1184,7 +1184,7 @@ containing a value of this type.
         public static final int tv_status=0x7f070076;
         public static final int tv_task_mem=0x7f070080;
         public static final int tv_task_name=0x7f07007f;
-        public static final int tv_title=0x7f070084;
+        public static final int tv_title=0x7f070085;
         public static final int tv_title_status=0x7f070049;
         public static final int tv_unlock=0x7f07003c;
         public static final int tv_unlock_count=0x7f07003f;

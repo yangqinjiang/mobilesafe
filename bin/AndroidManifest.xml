@@ -81,6 +81,8 @@
         </activity>
         <activity android:name="com.itheima.mobilesafe.AppLockActivity" >
         </activity>
+                <activity android:name="com.itheima.mobilesafe.TaskManagerActivity" >
+        </activity>
         <activity
             android:name="com.itheima.mobilesafe.EnterPwdActivity"
             android:launchMode="singleInstance" 

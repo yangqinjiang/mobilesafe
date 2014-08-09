@@ -33,4 +33,8 @@
 	    <item name="android:layout_marginLeft">5dip</item>
 	    <item name="android:layout_marginTop">3dip</item>
 	</style>
+	    <style name="widget_text">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#ff000000</item>
+    </style>
 </resources>

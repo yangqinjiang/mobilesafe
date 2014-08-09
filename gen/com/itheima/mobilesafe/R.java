@@ -1051,6 +1051,9 @@ containing a value of this type.
         public static final int taskmanager=0x7f02007c;
         public static final int trojan=0x7f02007d;
         public static final int unlock=0x7f02007e;
+        public static final int widget_bg_portrait=0x7f02007f;
+        public static final int widget_bg_portrait_child=0x7f020080;
+        public static final int widget_bg_portrait_child_divider=0x7f020081;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;
@@ -1064,12 +1067,13 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f070016;
         public static final int action_menu_presenter=0x7f070017;
         public static final int action_mode_close_button=0x7f070024;
-        public static final int action_settings=0x7f070089;
+        public static final int action_settings=0x7f07008c;
         public static final int activity_chooser_view_content=0x7f070025;
         public static final int always=0x7f07000b;
         public static final int beginning=0x7f070011;
         public static final int bt_cancle=0x7f07006f;
         public static final int bt_ok=0x7f07006e;
+        public static final int btn_clear=0x7f070087;
         public static final int cb_setup4_admin=0x7f070063;
         public static final int cb_setup4_status=0x7f070062;
         public static final int cb_status=0x7f070081;
@@ -1097,7 +1101,7 @@ containing a value of this type.
         public static final int icon=0x7f07002a;
         public static final int ifRoom=0x7f07000a;
         public static final int image=0x7f070027;
-        public static final int item_change_name=0x7f070088;
+        public static final int item_change_name=0x7f07008b;
         public static final int iv_app_icon=0x7f070072;
         public static final int iv_callsms_delete=0x7f07007a;
         public static final int iv_callsms_icon=0x7f070077;
@@ -1126,6 +1130,8 @@ containing a value of this type.
         public static final int none=0x7f070010;
         public static final int normal=0x7f070000;
         public static final int pb_smsbackup=0x7f07004a;
+        public static final int process_count=0x7f070085;
+        public static final int process_memory=0x7f070086;
         public static final int progress_circular=0x7f070018;
         public static final int progress_horizontal=0x7f070019;
         public static final int radio=0x7f07002f;
@@ -1133,7 +1139,7 @@ containing a value of this type.
         public static final int rb_phone=0x7f07006b;
         public static final int rb_sms=0x7f07006c;
         public static final int rg_mode=0x7f07006a;
-        public static final int rl_setting_update=0x7f070087;
+        public static final int rl_setting_update=0x7f07008a;
         public static final int rl_splash_root=0x7f070064;
         public static final int scv_change_location=0x7f07005d;
         public static final int search_badge=0x7f070032;
@@ -1168,7 +1174,7 @@ containing a value of this type.
         public static final int tv_callsms_phone=0x7f070078;
         public static final int tv_contact_name=0x7f07007b;
         public static final int tv_contact_phone=0x7f07007c;
-        public static final int tv_desc=0x7f070086;
+        public static final int tv_desc=0x7f070089;
         public static final int tv_drag_view_bottom=0x7f07004f;
         public static final int tv_drag_view_top=0x7f07004e;
         public static final int tv_home_name=0x7f07007d;
@@ -1184,7 +1190,7 @@ containing a value of this type.
         public static final int tv_status=0x7f070076;
         public static final int tv_task_mem=0x7f070080;
         public static final int tv_task_name=0x7f07007f;
-        public static final int tv_title=0x7f070085;
+        public static final int tv_title=0x7f070088;
         public static final int tv_title_status=0x7f070049;
         public static final int tv_unlock=0x7f07003c;
         public static final int tv_unlock_count=0x7f07003f;
@@ -1270,10 +1276,11 @@ containing a value of this type.
         public static final int list_home_item=0x7f030031;
         public static final int list_task_item=0x7f030032;
         public static final int popup_app_item=0x7f030033;
-        public static final int support_simple_spinner_dropdown_item=0x7f030034;
-        public static final int toast_address=0x7f030035;
-        public static final int ui_setting_click_view=0x7f030036;
-        public static final int ui_setting_view=0x7f030037;
+        public static final int process_widget=0x7f030034;
+        public static final int support_simple_spinner_dropdown_item=0x7f030035;
+        public static final int toast_address=0x7f030036;
+        public static final int ui_setting_click_view=0x7f030037;
+        public static final int ui_setting_view=0x7f030038;
     }
     public static final class menu {
         public static final int lost_find_menu=0x7f0e0000;
@@ -1557,9 +1564,11 @@ containing a value of this type.
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0d0022;
         public static final int text_content_style=0x7f0d0086;
         public static final int text_title_style=0x7f0d0085;
+        public static final int widget_text=0x7f0d0087;
     }
     public static final class xml {
         public static final int device_admin_sample=0x7f050000;
+        public static final int example_appwidget_info=0x7f050001;
     }
     public static final class styleable {
         /**  ============================================ 

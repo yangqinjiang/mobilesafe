@@ -120,6 +120,15 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name="com.itheima.mobilesafe.receiver.MyWidget">
+            <intent-filter >
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data 
+                android:name="android.appwidget.provider"
+                android:resource="@xml/example_appwidget_info" 
+                />
+        </receiver>
         <service android:name="com.itheima.mobilesafe.service.GPSService" >
         </service>
         <service android:name="com.itheima.mobilesafe.service.AddressService" >

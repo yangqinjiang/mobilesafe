@@ -1126,8 +1126,8 @@ containing a value of this type.
         public static final int lv_task_manager=0x7f070069;
         public static final int lv_unlock=0x7f070040;
         public static final int middle=0x7f070012;
-        public static final int my_content=0x7f07006c;
-        public static final int my_handle=0x7f07006b;
+        public static final int my_content=0x7f07006b;
+        public static final int my_handle=0x7f07006c;
         public static final int never=0x7f070009;
         public static final int none=0x7f070010;
         public static final int normal=0x7f070000;

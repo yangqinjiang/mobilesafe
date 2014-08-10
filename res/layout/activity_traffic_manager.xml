@@ -10,31 +10,30 @@
         android:text="流量统计" />
 
     <SlidingDrawer
-        android:orientation="horizontal"
         android:id="@+id/sd_demo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:content="@+id/my_content"
-        android:handle="@+id/my_handle" >
-<LinearLayout 
+        android:handle="@+id/my_handle"
+        android:orientation="horizontal" >
+
+        <LinearLayout
             android:id="@id/my_handle"
-                android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-    >
-        <ImageView
-            
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
-</LinearLayout>
-    
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@id/my_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:background="#55000000"
+            android:gravity="center"
             android:orientation="vertical" >
 
             <TextView

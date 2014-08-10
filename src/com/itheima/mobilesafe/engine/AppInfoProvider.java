@@ -8,6 +8,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.TrafficStats;
 
 import com.itheima.mobilesafe.domain.AppInfo;
 
@@ -31,6 +32,13 @@ public class AppInfoProvider {
 			String packageName = packInfo.packageName;//程序的包名
 			Drawable appIcon = packInfo.applicationInfo.loadIcon(pm);//图标
 			String appName = packInfo.applicationInfo.loadLabel(pm).toString();//程序名称
+			appName +=""+packInfo.applicationInfo.uid;//获取系统内核分配的uid,用户id
+			//上行流量
+			long txb = TrafficStats.getUidTxBytes(packInfo.applicationInfo.uid);
+			//下载流量
+			long rxb = TrafficStats.getUidRxBytes(packInfo.applicationInfo.uid);
+			//手机总的上下载流量
+			
 			int flags = packInfo.applicationInfo.flags;
 			boolean isUserApp = true;
 			if((flags & ApplicationInfo.FLAG_SYSTEM)!=0){

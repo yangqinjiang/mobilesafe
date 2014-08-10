@@ -348,8 +348,8 @@ int id lv_locked 0x7f070043
 int id lv_task_manager 0x7f070069
 int id lv_unlock 0x7f070040
 int id middle 0x7f070012
-int id my_content 0x7f07006c
-int id my_handle 0x7f07006b
+int id my_content 0x7f07006b
+int id my_handle 0x7f07006c
 int id never 0x7f070009
 int id none 0x7f070010
 int id normal 0x7f070000

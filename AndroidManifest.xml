@@ -137,6 +137,9 @@
         </service>
         <service android:name="com.itheima.mobilesafe.service.WatchDogService" >
         </service>
+        <service android:name="com.itheima.mobilesafe.service.UpdateWidgetService" >
+        </service>
+        
     </application>
 
 </manifest>

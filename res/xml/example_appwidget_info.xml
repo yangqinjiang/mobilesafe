@@ -4,4 +4,5 @@
     android:updatePeriodMillis="0"
     android:initialLayout="@layout/process_widget"
     >
+    <!-- android:updatePeriodMillis ="0" 最低限制为30分钟 -->
 </appwidget-provider>

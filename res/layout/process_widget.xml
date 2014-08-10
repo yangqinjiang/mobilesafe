@@ -17,7 +17,7 @@
         android:paddingTop="3.0dip" >
 
         <TextView
-            android:text="正在运行进程:"
+            android:text="正在运行进程:..."
             android:id="@+id/process_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:background="@drawable/widget_bg_portrait_child_divider" />
 
         <TextView
-            android:text="内存信息:"
+            android:text="内存信息:..."
             android:id="@+id/process_memory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -78,6 +78,11 @@ public class HomeActivity extends Activity {
 							TaskManagerActivity.class);
 					startActivity(intent);
 					break;
+				case 4://进程管理
+					intent = new Intent(HomeActivity.this,
+							TrafficManagerActivity.class);
+					startActivity(intent);
+					break;
 				case 7://高级工具
 					intent = new Intent(HomeActivity.this,
 							AtoolsActivity.class);

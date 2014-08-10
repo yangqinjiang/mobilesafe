@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.itheima.mobilesafe.HomeActivity" >
+
+    <TextView
+        style="@style/text_title_style"
+        android:text="流量统计" />
+
+    <SlidingDrawer
+        android:orientation="horizontal"
+        android:id="@+id/sd_demo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:content="@+id/my_content"
+        android:handle="@+id/my_handle" >
+<LinearLayout 
+            android:id="@id/my_handle"
+                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+    >
+        <ImageView
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+</LinearLayout>
+    
+
+        <LinearLayout
+            android:id="@id/my_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="#55000000"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容一" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容二" />
+        </LinearLayout>
+    </SlidingDrawer>
+
+</LinearLayout>

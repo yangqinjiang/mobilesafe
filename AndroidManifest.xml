@@ -92,7 +92,7 @@
         </activity>
         <activity android:name="com.itheima.mobilesafe.TrafficManagerActivity" >
             </activity>
-        <activity android:name="com.itheima.mobilesafe.AntiVirusActivity" >
+        <activity android:name="com.itheima.mobilesafe.AntiVirusActivity" android:screenOrientation="portrait"  android:configChanges="orientation|screenSize|keyboardHidden">
             </activity>
 
         <receiver android:name="com.itheima.mobilesafe.receiver.BootCompleteReceiver" >

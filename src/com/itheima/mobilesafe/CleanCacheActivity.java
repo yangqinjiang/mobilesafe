@@ -9,12 +9,14 @@ import java.util.List;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.IPackageDataObserver;
 import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageStats;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -51,7 +53,7 @@ public class CleanCacheActivity extends Activity {
 				break;
 			case SCAN_FINISH:
 				if(cacheInfos.size()>0){
-					for(CacheInfo cacheInfo :cacheInfos){
+					for(final CacheInfo cacheInfo :cacheInfos){
 						String r = cacheInfo.appName+"缓存大小:"+Formatter.formatFileSize(getApplicationContext(), cacheInfo.cache);
 						System.out.println(r);
 						TextView tv = new TextView(getApplicationContext());
@@ -63,14 +65,12 @@ public class CleanCacheActivity extends Activity {
 							
 							@Override
 							public void onClick(View v) {
-								try{
-									//清理程序的缓存
-									//android.permission.DELETE_CACHE_FILES 系统程序专用
-									Method method =PackageManager.class.getMethod("deleteApplicationCacheFiles", String.class,IPackageDataObserver.class);
-									method.invoke(pm, pn,new MyDataObserver());
-								}catch(Exception e){
-									e.printStackTrace();
-								}
+								//激活某个系统应用的界面
+								Intent intent = new Intent();
+								intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+								intent.addCategory("android.intent.category.DEFAULT");
+								intent.setData(Uri.parse("package:"+pn));
+								startActivity(intent);
 							}
 						});
 						ll_container.addView(tv,0);
@@ -120,7 +120,7 @@ public class CleanCacheActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_clean_cache);
 		//写入测试数据
-		//wirteCache();
+		wirteCache();
 		
 		pb_status=(ProgressBar)findViewById(R.id.pb_status);
 		tv_status=(TextView)findViewById(R.id.tv_status);

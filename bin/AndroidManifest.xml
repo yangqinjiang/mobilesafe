@@ -33,6 +33,7 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
 
     <application
         android:allowBackup="true"
@@ -94,7 +95,8 @@
             </activity>
         <activity android:name="com.itheima.mobilesafe.AntiVirusActivity" android:screenOrientation="portrait"  android:configChanges="orientation|screenSize|keyboardHidden">
             </activity>
-
+             <activity android:name="com.itheima.mobilesafe.CleanCacheActivity" android:screenOrientation="portrait"  android:configChanges="orientation|screenSize|keyboardHidden">
+            </activity>
         <receiver android:name="com.itheima.mobilesafe.receiver.BootCompleteReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

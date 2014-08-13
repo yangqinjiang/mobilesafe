@@ -91,7 +91,7 @@ public class HomeActivity extends Activity {
 					//AntiVirusActivity
 				case 6://杀毒
 					intent = new Intent(HomeActivity.this,
-							CleanCacheActivity.class);
+							SystemOptActivity.class);
 					startActivity(intent);
 					break;
 					//CleanCacheActivity

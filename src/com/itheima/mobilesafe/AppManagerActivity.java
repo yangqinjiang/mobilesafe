@@ -7,6 +7,7 @@ import java.util.List;
 import com.itheima.mobilesafe.domain.AppInfo;
 import com.itheima.mobilesafe.engine.AppInfoProvider;
 import com.itheima.mobilesafe.ui.FocusedTextView;
+import com.itheima.mobilesafe.utils.DensityUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -93,10 +94,13 @@ public class AppManagerActivity extends Activity implements OnClickListener{
 				//注意,一定要记得给popupWindow设置一个背景资源
 				//如果不去指定背景,动画不会被播放出来的
 				popWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-					int x = 60;// view.getLeft();
+				//屏幕适配
+				int dip60 = 60;
+				//根据当前手机的分辨率计算60个dip对应的像素是多少
+				int px = DensityUtil.dip2px(getApplicationContext(), dip60);
 				int[] location = new int[2];
 				view.getLocationInWindow(location);
-				popWindow.showAtLocation(parent,Gravity.LEFT|Gravity.TOP,x,location[1]);
+				popWindow.showAtLocation(parent,Gravity.LEFT|Gravity.TOP,px,location[1]);
 				ScaleAnimation sa = new ScaleAnimation(0.5f, 1.0f, 0.2f, 1.0f,
 						Animation.RELATIVE_TO_SELF,//水平方向 
 						0.5f, //中心开始

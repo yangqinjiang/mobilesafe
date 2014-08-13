@@ -29,11 +29,11 @@ public class HomeActivity extends Activity {
 	private SharedPreferences sp;
 	private final String TAG = "HomeActivity";
 	private static final String[] names = { "手机防盗", "通讯卫士", "软件管理", "进程管理",
-			"流量统计", "手机杀毒", "系统优化", "高级工具", "设置中心" };
+			"流量统计", "手机杀毒", "系统优化", "高级工具", "设置中心","关于" };
 	private static final int[] icons = { R.drawable.safe,
 			R.drawable.callmsgsafe, R.drawable.app, R.drawable.taskmanager,
 			R.drawable.netmanager, R.drawable.trojan, R.drawable.sysoptimize,
-			R.drawable.atools, R.drawable.settings };
+			R.drawable.atools, R.drawable.settings,R.drawable.safe };
 	private GridView gv_home;
 
 	@Override
@@ -103,6 +103,11 @@ public class HomeActivity extends Activity {
 				case 8:// 设置中心Activity
 					intent = new Intent(HomeActivity.this,
 							SettingCenterActivity.class);
+					startActivity(intent);
+					break;
+				case 9:// 关于Activity
+					intent = new Intent(HomeActivity.this,
+							com.itheima.mobilesafe.FragmentActivity.class);
 					startActivity(intent);
 					break;
 				}

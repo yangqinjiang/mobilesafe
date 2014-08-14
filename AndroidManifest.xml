@@ -149,8 +149,9 @@
         </service>
         <service android:name="com.itheima.mobilesafe.service.AddressService" >
         </service>
-        <service android:name="com.itheima.mobilesafe.service.CallSmsSafeService" >
+        <service android:name="com.itheima.mobilesafe.service.CallSmsSafeService" android:process=":self" >
         </service>
+        <!-- android:process=":self" 在独立进程里运行 -->
         <service android:name="com.itheima.mobilesafe.service.WatchDogService" >
         </service>
         <service android:name="com.itheima.mobilesafe.service.UpdateWidgetService" >

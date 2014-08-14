@@ -68,7 +68,7 @@ private class InnerSmsReceiver extends BroadcastReceiver{
 		dao = new BlackNumberDao(this);
 		receiver = new InnerSmsReceiver();
 		IntentFilter filter = new IntentFilter();
-		filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);//最高优先级
+		filter.setPriority(Integer.MAX_VALUE);//最高优先级
 		filter.addAction("android.provider.Telephony.SMS_RECEIVED");
 		
 		registerReceiver(receiver, filter);

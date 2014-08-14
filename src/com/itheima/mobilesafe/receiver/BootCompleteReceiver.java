@@ -1,6 +1,7 @@
 package com.itheima.mobilesafe.receiver;
 
 import com.itheima.mobilesafe.service.CallSmsSafeService;
+import com.itheima.mobilesafe.service.ReadLogService;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,6 +25,10 @@ public class BootCompleteReceiver extends BroadcastReceiver {
 		//在手机启动时,启动CallSmsSafeService服务
 		Intent i = new Intent(context,CallSmsSafeService.class);
 		context.startService(i);
+		//ReadLogService
+		Intent ii = new Intent(context,ReadLogService.class);
+		context.startService(ii);
+		
 		SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
 		//检查手机防盗保护是否开启了
 		boolean protecting = sp.getBoolean("protecting", false);

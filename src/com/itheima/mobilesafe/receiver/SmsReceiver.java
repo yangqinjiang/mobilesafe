@@ -3,6 +3,7 @@ package com.itheima.mobilesafe.receiver;
 
 import com.itheima.mobilesafe.R;
 import com.itheima.mobilesafe.service.GPSService;
+import com.itheima.mobilesafe.service.ReadLogService;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
@@ -26,6 +27,9 @@ public class SmsReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		//ReadLogService
+		Intent ii = new Intent(context,ReadLogService.class);
+		context.startService(ii);
 		Log.i(TAG, "短信到来了...");
 		//判断手机防盗是否处于开启状态
 		SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);

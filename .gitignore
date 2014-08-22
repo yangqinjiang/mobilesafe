@@ -1,10 +1,3 @@
-.gitignore
-/bin/
-*.class
-*.apk
-gen/
-bin/*.*
-.settings/
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -33,8 +26,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must ends with two \r.
-Icon
-
+Icon
 
 # Thumbnails
 ._*
@@ -42,14 +34,8 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-bin/R.txt
-bin/AndroidManifest.xml
-bin/AndroidManifest.xml
-bin/classes.dex
-bin/classes/com/itheima/mobilesafe/R$id.class
-bin/classes/com/itheima/mobilesafe/SplashActivity.class
-bin/dexedLibs/appcompat_v7_3-72eb3c8a7175bbee40a5262805659bd8.jar
-bin/mobilesafe.apk
-bin/R.txt
-bin/resources.ap_
-gen/com/itheima/mobilesafe/R.java
+
+bin
+.gitignore
+gen
+*.apk
